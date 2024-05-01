@@ -5,12 +5,14 @@ import {Text} from 'react-native';
 import {createBox} from '@shopify/restyle';
 import {ThemeProps} from '../../../theme';
 import TableListBase from '../../../shared/table-list/table-list';
+import {Title} from '../../../shared';
 
 const Box = createBox<ThemeProps>();
 
 const DashboardBase = ({name}: DashboardProps) => {
   return (
-    <Box bg="black" flex={1}>
+    <Box bg="black" flex={1} paddingHorizontal="s">
+      <Title name={name} />
       <TableListBase
         label="List years with multiple winners"
         data={[
@@ -23,7 +25,6 @@ const DashboardBase = ({name}: DashboardProps) => {
           console.log(item);
         }}
       />
-      <Text>{name}</Text>
     </Box>
   );
 };

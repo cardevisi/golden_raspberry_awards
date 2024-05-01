@@ -3,9 +3,10 @@ import {Dashboard} from './dashboard';
 import {render, screen} from '@testing-library/react-native';
 
 jest.mock('@shopify/restyle', () => {
-  const {View} = require('react-native');
+  const {View, Text} = jest.requireActual('react-native');
   return {
     createBox: () => View,
+    createText: () => Text,
   };
 });
 

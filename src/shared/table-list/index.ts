@@ -1,1 +1,1 @@
-export {default as WinnersList} from './table-list';
+export {default as TableList} from './table-list';

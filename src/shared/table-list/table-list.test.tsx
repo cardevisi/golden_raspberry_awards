@@ -14,6 +14,7 @@ describe('TableList', () => {
   it('should render a table list with 4 rows', () => {
     render(
       <TableListBase
+        label="test"
         data={[
           {year: 2022, winnerCount: 5},
           {year: 2018, winnerCount: 100},
