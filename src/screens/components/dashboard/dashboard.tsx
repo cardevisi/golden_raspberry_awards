@@ -38,23 +38,26 @@ const DashboardBase = ({name}: DashboardProps) => {
             <ActivityIndicator size="small" aria-label="activity-indicator" />
           ) : null}
         </Box>
-
-        <TableListMultipleWinnersBase
-          isLoading={false}
-          label="List years with multiple winners"
-          data={queryResultMultiplesWinnersByYear?.years}
-          onPress={(item: any) => {
-            console.log(item);
-          }}
-        />
-        <TableListTopWinnersBase
-          isLoading={false}
-          label={`Top ${TOP_WINNERS} studios with winners`}
-          data={queryResultStudiosWithWinners}
-          onPress={(item: any) => {
-            console.log(item);
-          }}
-        />
+        <Box marginBottom="l" paddingHorizontal="s">
+          <TableListMultipleWinnersBase
+            isLoading={false}
+            label="List years with multiple winners"
+            data={queryResultMultiplesWinnersByYear?.years}
+            onPress={(item: any) => {
+              console.log(item);
+            }}
+          />
+        </Box>
+        <Box marginBottom="l" paddingHorizontal="s">
+          <TableListTopWinnersBase
+            isLoading={false}
+            label={`Top ${TOP_WINNERS} studios with winners`}
+            data={queryResultStudiosWithWinners}
+            onPress={(item: any) => {
+              console.log(item);
+            }}
+          />
+        </Box>
       </Box>
     </ScrollView>
   );

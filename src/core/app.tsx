@@ -16,7 +16,20 @@ function App(): React.JSX.Element {
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <NavigationContainer>
-          <Tab.Navigator initialRouteName="Dashboard">
+          <Tab.Navigator
+            initialRouteName="Dashboard"
+            screenOptions={{
+              headerShown: false,
+              tabBarStyle: {
+                backgroundColor: theme.colors.black,
+                borderTopColor: theme.colors.white,
+                height: 60,
+                paddingBottom: 10,
+                paddingTop: 10,
+              },
+              tabBarHideOnKeyboard: true,
+              tabBarShowLabel: true,
+            }}>
             <Tab.Screen name="Dashboard" component={DashboardScreen} />
             <Tab.Screen name="Movies" component={MoviesScreen} />
           </Tab.Navigator>
