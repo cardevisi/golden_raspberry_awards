@@ -3,33 +3,60 @@ import {memo} from 'react';
 import {DashboardProps} from './dashboard.types';
 import {createBox} from '@shopify/restyle';
 import {ThemeProps} from '../../../theme';
-import TableListBase from '../../../shared/table-list/table-list';
 import {Title} from '../../../shared';
-import {ActivityIndicator} from 'react-native';
-import {useWinnersByYear} from './hooks/winners-by-years';
+import {ActivityIndicator, ScrollView} from 'react-native';
+import TableListMultipleWinnersBase from '../../../shared/table-list-multiples-winners/table-list-multiples-winners';
+import TableListTopWinnersBase from '../../../shared/table-list-top-winners/table-list-top-winners';
+import {useMultiplesWinnersByYear} from './hooks/multiples-winners-by-years';
+import {useStudiosWithWinners} from './hooks/studios-with-winners';
 
 const Box = createBox<ThemeProps>();
 
 const DashboardBase = ({name}: DashboardProps) => {
-  const {data: queryResult, isLoading} = useWinnersByYear();
+  const TOP_WINNERS = 5;
+  const {
+    data: queryResultMultiplesWinnersByYear,
+    isLoading: isLoadingMultiplesWinners,
+  } = useMultiplesWinnersByYear();
+  const {
+    data: queryResultStudiosWithWinners,
+    isLoading: isLoadingStudiosWithWinners,
+  } = useStudiosWithWinners(TOP_WINNERS);
 
   return (
-    <Box bg="black" flex={1} paddingHorizontal="s">
-      <Title name={name} />
-      {isLoading ? (
-        <Box justifyContent="center" alignItems="center">
-          <ActivityIndicator size="small" aria-label="activity-indicator" />
+    <ScrollView>
+      <Box bg="black" flex={1} paddingHorizontal="s">
+        <Box
+          flexDirection="row"
+          justifyContent="space-between"
+          backgroundColor="black"
+          alignContent="center"
+          alignItems="center"
+          paddingHorizontal="s">
+          <Title name={name} />
+          {isLoadingMultiplesWinners && isLoadingStudiosWithWinners ? (
+            <ActivityIndicator size="small" aria-label="activity-indicator" />
+          ) : null}
         </Box>
-      ) : (
-        <TableListBase
+
+        <TableListMultipleWinnersBase
+          isLoading={false}
           label="List years with multiple winners"
-          data={queryResult?.years}
+          data={queryResultMultiplesWinnersByYear?.years}
           onPress={(item: any) => {
             console.log(item);
           }}
         />
-      )}
-    </Box>
+        <TableListTopWinnersBase
+          isLoading={false}
+          label={`Top ${TOP_WINNERS} studios with winners`}
+          data={queryResultStudiosWithWinners}
+          onPress={(item: any) => {
+            console.log(item);
+          }}
+        />
+      </Box>
+    </ScrollView>
   );
 };
 

@@ -1,8 +1,6 @@
-// import {AxiosResponse} from 'axios';
-
 import {useQuery} from '@tanstack/react-query';
 
-const getWinnersByYear = async () => {
+const getMultiplesWinnersByYear = async () => {
   const fetchResult = await fetch(
     'https://tools.texoit.com/backend-java/api/movies?projection=years-with-multiple-winners',
   );
@@ -10,7 +8,7 @@ const getWinnersByYear = async () => {
   return fetchResult.json();
 };
 
-const useWinnersByYears = () => {
+const useMultiplesWinnersByYears = () => {
   const {
     data: raw,
     error,
@@ -18,7 +16,10 @@ const useWinnersByYears = () => {
     isLoading,
     isRefetching,
     refetch,
-  } = useQuery({queryKey: ['winnersByYear'], queryFn: getWinnersByYear});
+  } = useQuery({
+    queryKey: ['winnersByYear'],
+    queryFn: getMultiplesWinnersByYear,
+  });
 
   return {
     data: raw,
@@ -30,4 +31,4 @@ const useWinnersByYears = () => {
   };
 };
 
-export default useWinnersByYears;
+export default useMultiplesWinnersByYears;

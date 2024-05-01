@@ -2,7 +2,7 @@ import React from 'react';
 import {Dashboard} from './components/dashboard';
 
 function DashboardScreen() {
-  return <Dashboard name="Dashboard Screen" />;
+  return <Dashboard name="Dashboard" />;
 }
 
 export default DashboardScreen;

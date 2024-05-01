@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react-native';
-import TableListBase from './table-list';
+import TableListMultipleWinnersBase from './table-list-multiples-winners';
 
 jest.mock('@shopify/restyle', () => {
   const {View, Text} = jest.requireActual('react-native');
@@ -13,7 +13,7 @@ jest.mock('@shopify/restyle', () => {
 describe('TableList', () => {
   it('should render a table list with 4 rows', () => {
     render(
-      <TableListBase
+      <TableListMultipleWinnersBase
         label="test"
         data={[
           {year: 2022, winnerCount: 5},
@@ -30,7 +30,7 @@ describe('TableList', () => {
   it('should on press the first row', () => {
     const onPress = jest.fn();
     render(
-      <TableListBase
+      <TableListMultipleWinnersBase
         label="test"
         data={[
           {year: 2022, winnerCount: 5},
@@ -47,7 +47,7 @@ describe('TableList', () => {
 
   it('should render a label', () => {
     render(
-      <TableListBase
+      <TableListMultipleWinnersBase
         label="test"
         data={[
           {year: 2022, winnerCount: 5},
