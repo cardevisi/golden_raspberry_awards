@@ -1931,6 +1931,11 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
+"@shopify/restyle@^2.4.4":
+  version "2.4.4"
+  resolved "https://registry.npmjs.org/@shopify/restyle/-/restyle-2.4.4.tgz"
+  integrity sha512-Y64T8pCSKZi7ChMMfCfe+EJJsqeF+lNLsxYDHbuU63ffLHN7wRwIALJY6VqzcJWZX3fhCztX7AqOkgc7CetfPg==
+
 "@sideway/address@^4.1.5":
   version "4.1.5"
   resolved "https://registry.npmjs.org/@sideway/address/-/address-4.1.5.tgz"

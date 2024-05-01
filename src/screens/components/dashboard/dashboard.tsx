@@ -1,14 +1,17 @@
 import React from 'react';
 import {memo} from 'react';
 import {DashboardProps} from './dashboard.types';
-import styles from './dashboard.styles';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
+import {createBox} from '@shopify/restyle';
+import {ThemeProps} from '../../../theme';
+
+const Box = createBox<ThemeProps>();
 
 const DashboardBase = ({name}: DashboardProps) => {
   return (
-    <View style={styles.container}>
+    <Box bg="primary_001" flex={1} justifyContent="center" alignItems="center">
       <Text>{name}</Text>
-    </View>
+    </Box>
   );
 };
 

@@ -2,14 +2,17 @@ import {memo} from 'react';
 import React from 'react';
 
 import {MoviesProps} from './movies.types';
-import {Text, View} from 'react-native';
-import styles from './movies.styles';
+import {Text} from 'react-native';
+import {createBox} from '@shopify/restyle';
+import {ThemeProps} from '../../../theme';
+
+const Box = createBox<ThemeProps>();
 
 const MoviesBase = ({name}: MoviesProps) => {
   return (
-    <View style={styles.container}>
+    <Box bg="primary_001" flex={1} justifyContent="center" alignItems="center">
       <Text>{name}</Text>
-    </View>
+    </Box>
   );
 };
 
