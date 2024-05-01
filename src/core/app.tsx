@@ -13,9 +13,9 @@ function App(): React.JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="Movies" component={MoviesScreen} />
+        <Tab.Navigator initialRouteName="Dashboard">
           <Tab.Screen name="Dashboard" component={DashboardScreen} />
+          <Tab.Screen name="Movies" component={MoviesScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </ThemeProvider>
