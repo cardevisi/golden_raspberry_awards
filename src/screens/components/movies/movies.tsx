@@ -7,22 +7,27 @@ import {Title} from '../../../shared';
 import {TableListMoviesBase} from '../../../shared/table-list-movies';
 import {useGetMovies} from './hooks/get-movies';
 import {ActivityIndicator, ScrollView} from 'react-native';
+import Pagination from '../../../shared/pagination/pagination';
+import {WinnerStatus} from './types/winner-status';
 
 const Box = createBox<ThemeProps>();
 
 const MoviesBase = ({name}: MoviesProps) => {
+  const [currentPage, setCurrentPage] = React.useState<number>(1);
   const [selectedYear, setSelectedYear] = React.useState<number>(2018);
-  const [selectedWinnerStatus, setSelectedWinnerStatus] = React.useState<
-    'Yes' | 'No'
-  >('Yes');
+  const [selectedWinnerStatus, setSelectedWinnerStatus] =
+    React.useState<WinnerStatus>(WinnerStatus.YES);
 
   const {
     data: movies,
     refetch: refetchWinnersByYear,
     isLoading,
+    totalPages,
   } = useGetMovies({
     year: selectedYear,
     winnerStatus: selectedWinnerStatus,
+    page: currentPage - 1,
+    size: 99,
   });
 
   useEffect(() => {
@@ -47,10 +52,21 @@ const MoviesBase = ({name}: MoviesProps) => {
             <ActivityIndicator size="small" aria-label="activity-indicator" />
           ) : null}
         </Box>
-
+        <Box marginBottom="l">
+          <Pagination
+            totalPages={totalPages || 1}
+            onPageChange={(value: number) => {
+              setCurrentPage(value);
+            }}
+            currentPage={currentPage}
+          />
+        </Box>
         <TableListMoviesBase
           onChangeWinnerTextInput={(value: string) => {
-            const status = value.toLocaleLowerCase() === 'yes' ? 'Yes' : 'No';
+            const status =
+              value.toLocaleLowerCase() === 'yes'
+                ? WinnerStatus.YES
+                : WinnerStatus.NO;
             setSelectedWinnerStatus(status);
           }}
           onChangeYearTextInput={(value: string) => {
