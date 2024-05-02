@@ -4,11 +4,7 @@ const getMinMaxWins = async () => {
   const fetchResult = await fetch(
     'https://tools.texoit.com/backend-java/api/movies?projection=max-min-win-interval-for-producers',
   );
-
   const minMaxWins = await fetchResult.json();
-
-  console.log('fetching min max winners', JSON.stringify(minMaxWins, null, 2));
-
   return minMaxWins;
 };
 

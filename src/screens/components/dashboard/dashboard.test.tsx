@@ -42,6 +42,16 @@ jest.mock('./hooks/min-max-winners', () => {
   };
 });
 
+jest.mock('./hooks/winners-by-year', () => {
+  const actual = jest.requireActual('./hooks/winners-by-year');
+  return {
+    ...actual,
+    useWinnersByYear: jest
+      .fn()
+      .mockReturnValue({isLoading: true, data: [], refetch: jest.fn()}),
+  };
+});
+
 const mockStudiosWithWinners = [
   {
     id: 1,

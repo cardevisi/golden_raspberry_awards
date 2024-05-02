@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {memo} from 'react';
 import {DashboardProps} from './dashboard.types';
 import {createBox, createText} from '@shopify/restyle';
@@ -11,12 +11,17 @@ import {useMultiplesWinnersByYear} from './hooks/multiples-winners-by-years';
 import {useStudiosWithWinners} from './hooks/studios-with-winners';
 import TableListMinMaxWinnersBase from '../../../shared/table-list-min-max-winners/table-list-min-max-winners';
 import {useMinMaxWinners} from './hooks/min-max-winners';
+import {useWinnersByYear} from './hooks/winners-by-year';
+import {TableListWinnersByYearBase} from '../../../shared/table-list-winners-by-year';
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 const DashboardBase = ({name}: DashboardProps) => {
   const TOP_WINNERS = 5;
+  const [selectedWinnersByYear, setSelectedWinnersByYear] =
+    React.useState<number>(2018);
+
   const {
     data: queryResultMultiplesWinnersByYear,
     isLoading: isLoadingMultiplesWinners,
@@ -30,6 +35,19 @@ const DashboardBase = ({name}: DashboardProps) => {
     dataMax: queryResultMaxWins,
     isLoading: isLoadingMinMaxWins,
   } = useMinMaxWinners();
+  const {
+    data: queryResultWinnersByYear,
+    isLoading: isLoadingWinnersByYear,
+    refetch: refetchWinnersByYear,
+  } = useWinnersByYear({year: selectedWinnersByYear});
+
+  useEffect(() => {
+    setSelectedWinnersByYear(2018);
+  }, []);
+
+  useEffect(() => {
+    refetchWinnersByYear();
+  }, [refetchWinnersByYear, selectedWinnersByYear]);
 
   return (
     <ScrollView>
@@ -42,7 +60,8 @@ const DashboardBase = ({name}: DashboardProps) => {
           alignItems="center"
           paddingHorizontal="s">
           <Title name={name} />
-          {isLoadingMinMaxWins &&
+          {isLoadingWinnersByYear &&
+          isLoadingMinMaxWins &&
           isLoadingMultiplesWinners &&
           isLoadingStudiosWithWinners ? (
             <ActivityIndicator size="small" aria-label="activity-indicator" />
@@ -90,6 +109,20 @@ const DashboardBase = ({name}: DashboardProps) => {
               isLoading={false}
               label={'Minimum'}
               data={queryResultMinWins}
+              onPress={(item: any) => {
+                console.log(item);
+              }}
+            />
+          </Box>
+          <Box marginTop="l">
+            <TableListWinnersByYearBase
+              onPressSearchButton={value => {
+                const yearValue = parseInt(value, 10);
+                setSelectedWinnersByYear(yearValue);
+              }}
+              isLoading={false}
+              label={'List movie winners by year'}
+              data={queryResultWinnersByYear}
               onPress={(item: any) => {
                 console.log(item);
               }}

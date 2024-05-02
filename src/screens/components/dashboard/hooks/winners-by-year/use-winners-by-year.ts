@@ -1,14 +1,13 @@
 import {useQuery} from '@tanstack/react-query';
 
-const getMultiplesWinnersByYear = async () => {
+const getWinnersByYear = async (year: number) => {
   const fetchResult = await fetch(
-    'https://tools.texoit.com/backend-java/api/movies?projection=years-with-multiple-winners',
+    `https://tools.texoit.com/backend-java/api/movies?winner=true&year=${year}`,
   );
-
   return fetchResult.json();
 };
 
-const useMultiplesWinnersByYears = () => {
+const useWinnersByYear = ({year}: {year: number}) => {
   const {
     data: raw,
     error,
@@ -17,8 +16,8 @@ const useMultiplesWinnersByYears = () => {
     isRefetching,
     refetch,
   } = useQuery({
-    queryKey: ['multiplesWinnersByYear'],
-    queryFn: getMultiplesWinnersByYear,
+    queryKey: ['winnersByYear'],
+    queryFn: () => getWinnersByYear(year),
   });
 
   return {
@@ -31,4 +30,4 @@ const useMultiplesWinnersByYears = () => {
   };
 };
 
-export default useMultiplesWinnersByYears;
+export default useWinnersByYear;
