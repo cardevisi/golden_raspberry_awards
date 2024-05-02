@@ -4,22 +4,22 @@ import {
   FlatList,
   ActivityIndicator,
   TextInput,
-  Button,
   StyleSheet,
 } from 'react-native';
 import {ThemeProps} from '../../theme';
 import {createBox, createText} from '@shopify/restyle';
-import {TableListProps} from './table-list-winners-by-year.types';
+import {TableListProps} from './table-list-movies.types';
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
-const TableListWinnersByYearBase = ({
+const TableListMoviesBase = ({
   label,
   data,
   onPress,
   isLoading,
-  onPressSearchButton,
+  onChangeYearTextInput,
+  onChangeWinnerTextInput,
 }: TableListProps) => {
   const getBackgroundColor = (index: number) => {
     if (index % 2 === 0) {
@@ -32,7 +32,6 @@ const TableListWinnersByYearBase = ({
     return index === data.length - 1 ? 0 : 1;
   };
 
-  const [textInput, onChangeTextInput] = React.useState<string>('');
   return (
     <>
       <Box flexDirection="column" marginBottom="s" borderRadius={5}>
@@ -51,18 +50,22 @@ const TableListWinnersByYearBase = ({
             borderRadius={5}
             flexDirection="row"
             justifyContent="space-between">
-            <TextInput
-              maxLength={4}
-              value={textInput.toString()}
-              onChangeText={onChangeTextInput}
-              keyboardType="numeric"
-              placeholder="Year"
-              style={styles.input}
-            />
-            <Button
-              onPress={() => onPressSearchButton(textInput)}
-              title="Search"
-            />
+            <Box width={'48%'} height={40} marginRight="s">
+              <TextInput
+                maxLength={4}
+                onChangeText={onChangeYearTextInput}
+                keyboardType="numeric"
+                placeholder="Filter by Year"
+                style={styles.input}
+              />
+            </Box>
+            <Box width={'50%'} height={40}>
+              <TextInput
+                onChangeText={onChangeWinnerTextInput}
+                placeholder="Filter by Winner?"
+                style={styles.input}
+              />
+            </Box>
           </Box>
           <FlatList
             data={data}
@@ -93,6 +96,12 @@ const TableListWinnersByYearBase = ({
                     </Text>
                     {` ${item.title}`}
                   </Text>
+                  <Text variant="body" color="white">
+                    <Text variant="body" color="white" fontWeight={'bold'}>
+                      Winner:
+                    </Text>
+                    {` ${item.winner}`}
+                  </Text>
                 </Box>
               </TouchableHighlight>
             )}
@@ -114,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TableListWinnersByYearBase;
+export default TableListMoviesBase;
