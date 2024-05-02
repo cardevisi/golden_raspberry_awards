@@ -1,1 +1,1 @@
-export {default as TableListTopWinners} from './table-list-top-winners';
+export {default as TableListTopWinnersBase} from './table-list-top-winners';

@@ -1,1 +1,1 @@
-export {default as TableListTopWinners} from './table-list-min-max-winners';
+export {default as TableListMinMaxWinnersBase} from './table-list-min-max-winners';

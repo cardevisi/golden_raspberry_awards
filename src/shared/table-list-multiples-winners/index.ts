@@ -1,1 +1,1 @@
-export {default as TableListMultipleWinners} from './table-list-multiples-winners';
+export {default as TableListMultipleWinnersBase} from './table-list-multiples-winners';
