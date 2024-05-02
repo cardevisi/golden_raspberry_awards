@@ -13,6 +13,7 @@ const Pagination = ({
 }) => {
   function PageButtonsComponents() {
     const pageButtons = [];
+
     // first page button
     pageButtons.push(
       <TouchableOpacity

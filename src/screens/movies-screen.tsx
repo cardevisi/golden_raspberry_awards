@@ -1,12 +1,12 @@
 import React from 'react';
 import {Movies} from './components/movies';
-import {View} from 'react-native';
+import {Box} from '../shared/box';
 
 function MoviesScreen() {
   return (
-    <View style={{flex: 1, paddingTop: 20, backgroundColor: 'black'}}>
+    <Box flex={1} bg="black" padding="s">
       <Movies name="Movies" />
-    </View>
+    </Box>
   );
 }
 

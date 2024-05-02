@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {memo} from 'react';
 import {DashboardProps} from './dashboard.types';
-import {createBox, createText} from '@shopify/restyle';
+import {createText} from '@shopify/restyle';
 import {ThemeProps} from '../../../theme';
 import {Title} from '../../../shared';
 import {ActivityIndicator, ScrollView} from 'react-native';
@@ -13,8 +13,8 @@ import TableListMinMaxWinnersBase from '../../../shared/table-list-min-max-winne
 import {useMinMaxWinners} from './hooks/min-max-winners';
 import {useWinnersByYear} from './hooks/winners-by-year';
 import {TableListWinnersByYearBase} from '../../../shared/table-list-winners-by-year';
+import {Box} from '../../../shared/box';
 
-const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 const DashboardBase = ({name}: DashboardProps) => {

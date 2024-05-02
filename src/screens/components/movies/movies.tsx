@@ -1,16 +1,13 @@
 import {memo, useEffect} from 'react';
 import React from 'react';
 import {MoviesProps} from './movies.types';
-import {createBox} from '@shopify/restyle';
-import {ThemeProps} from '../../../theme';
 import {Title} from '../../../shared';
 import {TableListMoviesBase} from '../../../shared/table-list-movies';
 import {useGetMovies} from './hooks/get-movies';
 import {ActivityIndicator, ScrollView} from 'react-native';
 import Pagination from '../../../shared/pagination/pagination';
 import {WinnerStatus} from './types/winner-status';
-
-const Box = createBox<ThemeProps>();
+import {Box} from '../../../shared/box';
 
 const MoviesBase = ({name}: MoviesProps) => {
   const [currentPage, setCurrentPage] = React.useState<number>(1);

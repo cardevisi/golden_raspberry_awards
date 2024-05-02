@@ -7,10 +7,10 @@ import {
   StyleSheet,
 } from 'react-native';
 import {ThemeProps} from '../../theme';
-import {createBox, createText} from '@shopify/restyle';
+import {createText} from '@shopify/restyle';
 import {TableListProps} from './table-list-movies.types';
+import {Box} from '../box';
 
-const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 const TableListMoviesBase = ({

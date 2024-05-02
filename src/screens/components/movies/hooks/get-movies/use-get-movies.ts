@@ -1,19 +1,12 @@
 import {useQuery} from '@tanstack/react-query';
+import {WinnerStatus} from '../../types/winner-status';
 
 const getMovies = async (
   year: number,
-  winnerStatus: 'Yes' | 'No',
+  winnerStatus: WinnerStatus,
   page = 0,
   size = 99,
 ) => {
-  console.log(
-    'year>>>',
-    year,
-    'winnerStatus>>>',
-    winnerStatus,
-    'page>>>',
-    page,
-  );
   const fetchResult = await fetch(
     `https://tools.texoit.com/backend-java/api/movies?page=${page}&size=${size}&winner=${winnerStatus}&year=${year}`,
   );
@@ -28,7 +21,7 @@ const useGetMovies = ({
   size = 99,
 }: {
   year: number;
-  winnerStatus: 'Yes' | 'No';
+  winnerStatus: WinnerStatus;
   page?: number;
   size?: number;
 }) => {

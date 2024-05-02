@@ -1,10 +1,10 @@
 import React from 'react';
 import {TouchableHighlight, FlatList, ActivityIndicator} from 'react-native';
 import {ThemeProps} from '../../theme';
-import {createBox, createText} from '@shopify/restyle';
+import {createText} from '@shopify/restyle';
 import {TableListProps} from './table-list-multiples-winners.types';
+import {Box} from '../box';
 
-const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 const TableListMultipleWinnersBase = ({

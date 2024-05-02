@@ -1,12 +1,12 @@
 import React from 'react';
 import {Dashboard} from './components/dashboard';
-import {View} from 'react-native';
+import {Box} from '../shared/box';
 
 function DashboardScreen() {
   return (
-    <View style={{flex: 1, paddingTop: 20, backgroundColor: 'black'}}>
+    <Box flex={1} bg="black" padding="s">
       <Dashboard name="Dashboard" />
-    </View>
+    </Box>
   );
 }
 

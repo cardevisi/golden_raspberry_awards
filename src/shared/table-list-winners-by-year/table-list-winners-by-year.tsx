@@ -8,10 +8,10 @@ import {
   StyleSheet,
 } from 'react-native';
 import {ThemeProps} from '../../theme';
-import {createBox, createText} from '@shopify/restyle';
+import {createText} from '@shopify/restyle';
 import {TableListProps} from './table-list-winners-by-year.types';
+import {Box} from '../box';
 
-const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 const TableListWinnersByYearBase = ({
