@@ -2,12 +2,12 @@ import React from 'react';
 import {TouchableHighlight, FlatList, ActivityIndicator} from 'react-native';
 import {ThemeProps} from '../../theme';
 import {createBox, createText} from '@shopify/restyle';
-import {TableListProps} from './table-list-top-winners.types';
+import {TableListProps} from './table-list-min-max-winners.types';
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
-const TableListTopWinnersBase = ({
+const TableListMinMaxWinnersBase = ({
   label,
   data,
   onPress,
@@ -44,15 +44,27 @@ const TableListTopWinnersBase = ({
                 borderBottomWidth={index === data.length - 1 ? 0 : 1}>
                 <Text variant="body" color="white">
                   <Text variant="body" color="white" fontWeight={'bold'}>
-                    Name:
+                    Producer:
                   </Text>
-                  {` ${item.name}`}
+                  {` ${item.producer}`}
                 </Text>
                 <Text variant="body" color="white">
                   <Text variant="body" color="white" fontWeight={'bold'}>
-                    Win count:
+                    Interval:
                   </Text>
-                  {` ${item.winCount}`}
+                  {` ${item.interval}`}
+                </Text>
+                <Text variant="body" color="white">
+                  <Text variant="body" color="white" fontWeight={'bold'}>
+                    Previous Year:
+                  </Text>
+                  {` ${item.previousWin}`}
+                </Text>
+                <Text variant="body" color="white">
+                  <Text variant="body" color="white" fontWeight={'bold'}>
+                    Following Year:
+                  </Text>
+                  {` ${item.followingWin}`}
                 </Text>
               </Box>
             </TouchableHighlight>
@@ -63,4 +75,4 @@ const TableListTopWinnersBase = ({
   );
 };
 
-export default TableListTopWinnersBase;
+export default TableListMinMaxWinnersBase;

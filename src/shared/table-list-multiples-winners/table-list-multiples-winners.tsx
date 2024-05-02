@@ -16,7 +16,7 @@ const TableListMultipleWinnersBase = ({
   return (
     <>
       <Box flexDirection="column" marginBottom="s" borderRadius={5}>
-        <Text variant="body" color="white">
+        <Text variant="body" color="white" fontWeight={'bold'}>
           {label}
         </Text>
       </Box>

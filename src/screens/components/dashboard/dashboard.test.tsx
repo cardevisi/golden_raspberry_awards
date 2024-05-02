@@ -32,6 +32,16 @@ jest.mock('./hooks/studios-with-winners', () => {
   };
 });
 
+jest.mock('./hooks/min-max-winners', () => {
+  const actual = jest.requireActual('./hooks/min-max-winners');
+  return {
+    ...actual,
+    useMinMaxWinners: jest
+      .fn()
+      .mockReturnValue({isLoading: true, dataMin: [], dataMax: []}),
+  };
+});
+
 const mockStudiosWithWinners = [
   {
     id: 1,

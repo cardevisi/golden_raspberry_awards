@@ -1,14 +1,14 @@
 import {useQuery} from '@tanstack/react-query';
-import {selectionSortTopWinners} from '../../utils';
+import {quickSortTopWinners} from '../../utils';
 
 const getStudiosWithWinner = async (topWinners: number) => {
   const fetchResult = await fetch(
     'https://tools.texoit.com/backend-java/api/movies?projection=studios-with-win-count',
   );
 
-  const sortResult = selectionSortTopWinners(await fetchResult.json());
-
-  return sortResult.studios.slice(0, topWinners);
+  const sortedStudios = (await fetchResult.json()).studios;
+  const topStudios = sortedStudios.slice(0, topWinners);
+  return quickSortTopWinners(topStudios);
 };
 
 const useStudiosWithWinners = (topWinners = 3) => {
