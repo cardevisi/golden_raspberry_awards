@@ -36,6 +36,17 @@ class GoldenRaspberryAwardsHttpGateway implements GoldenRaspberryAwardsGateway {
     return await response.json();
   }
 
+  getWinnerValue = (winnerStatus: WinnerStatus) => {
+    if (winnerStatus === WinnerStatus.YES) {
+      return 'true';
+    }
+    if (winnerStatus === WinnerStatus.NO) {
+      return 'false';
+    }
+
+    return '';
+  };
+
   async getMovies({
     page,
     size,
@@ -47,8 +58,7 @@ class GoldenRaspberryAwardsHttpGateway implements GoldenRaspberryAwardsGateway {
     year: number;
     winnerStatus: WinnerStatus;
   }): Promise<any> {
-    const winnerStatusText =
-      winnerStatus === WinnerStatus.YES ? 'true' : 'false';
+    const winnerStatusText = this.getWinnerValue(winnerStatus);
 
     const response = await fetch(
       `${this.baseUrl}?page=${page}&size=${size}&winner=${winnerStatusText}&year=${year}`,

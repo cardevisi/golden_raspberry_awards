@@ -35,6 +35,25 @@ const MoviesBase = ({name}: MoviesProps) => {
     refetchWinnersByYear();
   }, [refetchWinnersByYear, selectedYear, selectedWinnerStatus]);
 
+  const handleOnChangeWinnerTextInput = (value: string) => {
+    let winnerStatus = WinnerStatus.EMPTY;
+
+    if (value.toLocaleUpperCase() === WinnerStatus.YES) {
+      winnerStatus = WinnerStatus.YES;
+    }
+
+    if (value.toLocaleUpperCase() === WinnerStatus.NO) {
+      winnerStatus = WinnerStatus.NO;
+    }
+
+    setSelectedWinnerStatus(winnerStatus);
+  };
+
+  const handleOnChangeYearTextInput = (value: string) => {
+    const yearValue = parseInt(value, 10);
+    setSelectedYear(yearValue);
+  };
+
   return (
     <ScrollView>
       <Box bg="black" flex={1} paddingHorizontal="s">
@@ -60,16 +79,10 @@ const MoviesBase = ({name}: MoviesProps) => {
         </Box>
         <TableListMoviesBase
           onChangeWinnerTextInput={(value: string) => {
-            const status =
-              value.toLocaleUpperCase() === WinnerStatus.YES
-                ? WinnerStatus.YES
-                : WinnerStatus.NO;
-            console.log(status);
-            setSelectedWinnerStatus(status);
+            handleOnChangeWinnerTextInput(value);
           }}
           onChangeYearTextInput={(value: string) => {
-            const yearValue = parseInt(value, 10);
-            setSelectedYear(yearValue);
+            handleOnChangeYearTextInput(value);
           }}
           isLoading={false}
           label="Filter by Year and Winner Status"
