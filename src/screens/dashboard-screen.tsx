@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dashboard} from './components/dashboard';
-import {Box} from '../shared/box';
+import {Box} from '@golden-raspberry-awards/shared/box';
 
 function DashboardScreen() {
   return (

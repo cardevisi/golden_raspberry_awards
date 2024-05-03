@@ -1,0 +1,9 @@
+{
+  "name": "@golden-raspberry-awards/shared",
+  "version": "1.0.0",
+  "description": "Shared componets for general use",
+  "main": "./index.ts",
+  "keywords": [],
+  "author": "Carlos Oliveira <cardevisi@gmail.com>",
+  "license": "ISC"
+}

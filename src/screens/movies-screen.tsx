@@ -1,6 +1,6 @@
 import React from 'react';
 import {Movies} from './components/movies';
-import {Box} from '../shared/box';
+import {Box} from '@golden-raspberry-awards/shared/box';
 
 function MoviesScreen() {
   return (

@@ -9,7 +9,7 @@ import {
   TableListTopWinnersBase,
   TableListMultipleWinnersBase,
   TableListWinnersByYearBase,
-} from '../../../shared';
+} from '@golden-raspberry-awards/shared';
 import {ActivityIndicator, Alert, ScrollView} from 'react-native';
 import {
   useMultipleWinnersByYears,
@@ -18,7 +18,7 @@ import {
   useMaxMinWinInterval,
 } from './hooks';
 
-import {Box} from '../../../shared/box';
+import {Box} from '@golden-raspberry-awards/shared/box';
 
 const Text = createText<ThemeProps>();
 

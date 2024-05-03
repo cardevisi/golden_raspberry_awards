@@ -2,6 +2,9 @@
   "name": "golden_raspberry_awards",
   "version": "0.0.1",
   "private": true,
+  "workspaces": [
+    "src/**/shared"
+  ],
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -10,6 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@golden-raspberry-awards/shared": "^1.0.0",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
     "@shopify/restyle": "^2.4.4",
