@@ -3,7 +3,7 @@ import React from 'react';
 import {MoviesProps} from './movies.types';
 import {Title} from '../../../shared';
 import {TableListMoviesBase} from '../../../shared/table-list-movies';
-import {useGetMovies} from './hooks/get-movies';
+import {useGetMovies} from './hooks/use-get-movies';
 import {ActivityIndicator, ScrollView} from 'react-native';
 import Pagination from '../../../shared/pagination/pagination';
 import {WinnerStatus} from './types/winner-status';
@@ -61,9 +61,10 @@ const MoviesBase = ({name}: MoviesProps) => {
         <TableListMoviesBase
           onChangeWinnerTextInput={(value: string) => {
             const status =
-              value.toLocaleLowerCase() === 'yes'
+              value.toLocaleUpperCase() === WinnerStatus.YES
                 ? WinnerStatus.YES
                 : WinnerStatus.NO;
+            console.log(status);
             setSelectedWinnerStatus(status);
           }}
           onChangeYearTextInput={(value: string) => {

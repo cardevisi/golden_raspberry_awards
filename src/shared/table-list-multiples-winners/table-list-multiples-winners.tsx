@@ -41,6 +41,7 @@ const TableListMultipleWinnersBase = ({
                 padding="s"
                 flexDirection="column"
                 justifyContent="space-between"
+                borderRadius={10}
                 borderBottomColor="primary_005"
                 borderBottomWidth={index === data.length - 1 ? 0 : 1}>
                 <Text variant="body" color="white">

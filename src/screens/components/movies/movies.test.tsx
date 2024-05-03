@@ -1,7 +1,7 @@
 import React from 'react';
 import {Movies} from './movies';
 import {render, screen} from '@testing-library/react-native';
-import {useGetMovies} from './hooks/get-movies';
+import {useGetMovies} from './hooks/use-get-movies';
 
 jest.mock('@shopify/restyle', () => {
   const {View, Text} = jest.requireActual('react-native');
@@ -11,8 +11,8 @@ jest.mock('@shopify/restyle', () => {
   };
 });
 
-jest.mock('./hooks/get-movies', () => {
-  const {actual} = jest.requireActual('./hooks/get-movies');
+jest.mock('./hooks/use-get-movies', () => {
+  const {actual} = jest.requireActual('./hooks/use-get-movies');
   return {
     ...actual,
     useGetMovies: jest.fn().mockReturnValue({

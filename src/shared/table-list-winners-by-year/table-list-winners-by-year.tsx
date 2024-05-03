@@ -79,6 +79,7 @@ const TableListWinnersByYearBase = ({
                   padding="s"
                   flexDirection="column"
                   justifyContent="space-between"
+                  borderRadius={5}
                   borderBottomColor="primary_005"
                   borderBottomWidth={getConditionalLastBorder(index)}>
                   <Text variant="body" color="white">

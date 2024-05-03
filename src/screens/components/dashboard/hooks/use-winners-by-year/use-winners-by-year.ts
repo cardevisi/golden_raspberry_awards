@@ -1,11 +1,15 @@
 import {useQuery} from '@tanstack/react-query';
+import {
+  BASE_URL,
+  FetchAdapter,
+  GoldenRaspberryAwardsHttpGateway,
+} from '../../../../../core';
 
-const getWinnersByYear = async (year: number) => {
-  const fetchResult = await fetch(
-    `https://tools.texoit.com/backend-java/api/movies?winner=true&year=${year}`,
-  );
-  return fetchResult.json();
-};
+const fetchAdapter = new FetchAdapter();
+const goldenRaspberryAwardsGateway = new GoldenRaspberryAwardsHttpGateway(
+  fetchAdapter,
+  BASE_URL,
+);
 
 const useWinnersByYear = ({year}: {year: number}) => {
   const {
@@ -17,7 +21,7 @@ const useWinnersByYear = ({year}: {year: number}) => {
     refetch,
   } = useQuery({
     queryKey: ['winnersByYear'],
-    queryFn: () => getWinnersByYear(year),
+    queryFn: () => goldenRaspberryAwardsGateway.getMoviesByYear(true, year), //getWinnersByYear(year),
   });
 
   return {

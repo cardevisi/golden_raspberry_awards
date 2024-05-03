@@ -4,7 +4,7 @@ import {Box} from '../shared/box';
 
 function DashboardScreen() {
   return (
-    <Box flex={1} bg="black" padding="s">
+    <Box flex={1} bg="black">
       <Dashboard name="Dashboard" />
     </Box>
   );

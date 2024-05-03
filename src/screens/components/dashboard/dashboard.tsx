@@ -3,16 +3,21 @@ import {memo} from 'react';
 import {DashboardProps} from './dashboard.types';
 import {createText} from '@shopify/restyle';
 import {ThemeProps} from '../../../theme';
-import {Title} from '../../../shared';
-import {ActivityIndicator, ScrollView} from 'react-native';
-import {TableListMultipleWinnersBase} from '../../../shared/table-list-multiples-winners';
-import {TableListTopWinnersBase} from '../../../shared/table-list-top-winners';
-import {useMultiplesWinnersByYear} from './hooks/multiples-winners-by-years';
-import {useStudiosWithWinners} from './hooks/studios-with-winners';
-import {TableListMinMaxWinnersBase} from '../../../shared/table-list-min-max-winners';
-import {useMinMaxWinners} from './hooks/min-max-winners';
-import {useWinnersByYear} from './hooks/winners-by-year';
-import {TableListWinnersByYearBase} from '../../../shared/table-list-winners-by-year';
+import {
+  TableListMinMaxWinnersBase,
+  Title,
+  TableListTopWinnersBase,
+  TableListMultipleWinnersBase,
+  TableListWinnersByYearBase,
+} from '../../../shared';
+import {ActivityIndicator, Alert, ScrollView} from 'react-native';
+import {
+  useMultipleWinnersByYears,
+  useStudiosWithWinners,
+  useWinnersByYear,
+  useMaxMinWinInterval,
+} from './hooks';
+
 import {Box} from '../../../shared/box';
 
 const Text = createText<ThemeProps>();
@@ -24,17 +29,20 @@ const DashboardBase = ({name}: DashboardProps) => {
 
   const {
     data: queryResultMultiplesWinnersByYear,
-    isLoading: isLoadingMultiplesWinners,
-  } = useMultiplesWinnersByYear();
+    isLoading: isLoadingMultiplesWinnersByYear,
+  } = useMultipleWinnersByYears();
+
   const {
     data: queryResultStudiosWithWinners,
     isLoading: isLoadingStudiosWithWinners,
   } = useStudiosWithWinners(TOP_WINNERS);
+
   const {
     dataMin: queryResultMinWins,
     dataMax: queryResultMaxWins,
     isLoading: isLoadingMinMaxWins,
-  } = useMinMaxWinners();
+  } = useMaxMinWinInterval();
+
   const {
     data: queryResultWinnersByYear,
     isLoading: isLoadingWinnersByYear,
@@ -62,7 +70,7 @@ const DashboardBase = ({name}: DashboardProps) => {
           <Title name={name} />
           {isLoadingWinnersByYear &&
           isLoadingMinMaxWins &&
-          isLoadingMultiplesWinners &&
+          isLoadingMultiplesWinnersByYear &&
           isLoadingStudiosWithWinners ? (
             <ActivityIndicator size="small" aria-label="activity-indicator" />
           ) : null}
@@ -73,7 +81,10 @@ const DashboardBase = ({name}: DashboardProps) => {
             label="List years with multiple winners"
             data={queryResultMultiplesWinnersByYear?.years}
             onPress={(item: any) => {
-              console.log(item);
+              Alert.alert(
+                item.year.toString(),
+                `Number of winners: ${item.winnerCount.toString()}`,
+              );
             }}
           />
         </Box>
@@ -83,7 +94,7 @@ const DashboardBase = ({name}: DashboardProps) => {
             label={`Top ${TOP_WINNERS} studios with winners`}
             data={queryResultStudiosWithWinners}
             onPress={(item: any) => {
-              console.log(item);
+              Alert.alert(item.name, `Win count: ${item.winCount.toString()}`);
             }}
           />
         </Box>
@@ -101,7 +112,10 @@ const DashboardBase = ({name}: DashboardProps) => {
             label={'Maximum'}
             data={queryResultMaxWins}
             onPress={(item: any) => {
-              console.log(item);
+              Alert.alert(
+                item.producer,
+                `Interval: ${item.interval.toString()}`,
+              );
             }}
           />
           <Box marginTop="s">
@@ -110,7 +124,10 @@ const DashboardBase = ({name}: DashboardProps) => {
               label={'Minimum'}
               data={queryResultMinWins}
               onPress={(item: any) => {
-                console.log(item);
+                Alert.alert(
+                  item.producer,
+                  `Interval: ${item.interval.toString()}`,
+                );
               }}
             />
           </Box>
@@ -124,7 +141,10 @@ const DashboardBase = ({name}: DashboardProps) => {
               label={'List movie winners by year'}
               data={queryResultWinnersByYear}
               onPress={(item: any) => {
-                console.log(item);
+                Alert.alert(
+                  item.title,
+                  `Producers: ${item.producers.join(', ')}`,
+                );
               }}
             />
           </Box>

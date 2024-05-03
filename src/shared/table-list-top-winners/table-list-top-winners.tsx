@@ -41,6 +41,7 @@ const TableListTopWinnersBase = ({
                 flexDirection="column"
                 justifyContent="space-between"
                 borderBottomColor="primary_005"
+                borderRadius={10}
                 borderBottomWidth={index === data.length - 1 ? 0 : 1}>
                 <Text variant="body" color="white">
                   <Text variant="body" color="white" fontWeight={'bold'}>

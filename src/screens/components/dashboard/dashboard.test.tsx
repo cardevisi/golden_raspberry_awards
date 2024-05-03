@@ -1,8 +1,7 @@
 import React from 'react';
 import {Dashboard} from './dashboard';
 import {render, screen} from '@testing-library/react-native';
-import {useMultiplesWinnersByYear} from './hooks/multiples-winners-by-years';
-import {useStudiosWithWinners} from './hooks/studios-with-winners';
+import {useMultipleWinnersByYears, useStudiosWithWinners} from './hooks';
 
 jest.mock('@shopify/restyle', () => {
   const {View, Text} = jest.requireActual('react-native');
@@ -12,18 +11,18 @@ jest.mock('@shopify/restyle', () => {
   };
 });
 
-jest.mock('./hooks/multiples-winners-by-years', () => {
-  const actual = jest.requireActual('./hooks/multiples-winners-by-years');
+jest.mock('./hooks/use-multiple-winners-by-years', () => {
+  const actual = jest.requireActual('./hooks/use-multiple-winners-by-years');
   return {
     ...actual,
-    useMultiplesWinnersByYear: jest
+    useMultipleWinnersByYears: jest
       .fn()
       .mockReturnValue({isLoading: true, data: []}),
   };
 });
 
-jest.mock('./hooks/studios-with-winners', () => {
-  const actual = jest.requireActual('./hooks/studios-with-winners');
+jest.mock('./hooks/use-studios-with-winners', () => {
+  const actual = jest.requireActual('./hooks/use-studios-with-winners');
   return {
     ...actual,
     useStudiosWithWinners: jest
@@ -32,18 +31,18 @@ jest.mock('./hooks/studios-with-winners', () => {
   };
 });
 
-jest.mock('./hooks/min-max-winners', () => {
-  const actual = jest.requireActual('./hooks/min-max-winners');
+jest.mock('./hooks/use-max-min-win-interval', () => {
+  const actual = jest.requireActual('./hooks/use-max-min-win-interval');
   return {
     ...actual,
-    useMinMaxWinners: jest
+    useMaxMinWinInterval: jest
       .fn()
       .mockReturnValue({isLoading: true, dataMin: [], dataMax: []}),
   };
 });
 
-jest.mock('./hooks/winners-by-year', () => {
-  const actual = jest.requireActual('./hooks/winners-by-year');
+jest.mock('./hooks/use-winners-by-year', () => {
+  const actual = jest.requireActual('./hooks/use-winners-by-year');
   return {
     ...actual,
     useWinnersByYear: jest
@@ -91,7 +90,7 @@ describe('Dashboard', () => {
   });
 
   it('sould render a table list label for multiple winners', () => {
-    (useMultiplesWinnersByYear as jest.Mock).mockReturnValue({
+    (useMultipleWinnersByYears as jest.Mock).mockReturnValue({
       isLoading: false,
       data: {
         years: [{year: 2021, winnerCount: 2}],
