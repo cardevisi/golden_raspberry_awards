@@ -44,7 +44,7 @@ class GoldenRaspberryAwardsHttpGateway implements GoldenRaspberryAwardsGateway {
       return 'false';
     }
 
-    return '';
+    return WinnerStatus.EMPTY;
   };
 
   async getMovies({
