@@ -3,44 +3,49 @@ import Pagination from './pagination';
 import React from 'react';
 
 describe('Pagination', () => {
-  it.skip('should render correctly', () => {
+  it('should render correctly', () => {
     render(
       <Pagination currentPage={1} onPageChange={() => {}} totalPages={1} />,
     );
-    expect(screen.getByText('1')).toBe(1);
+    expect(screen.getByText('1').children[0]).toBe('1');
   });
 
-  it.skip('should render two pages', () => {
+  it('should render two pages', () => {
     render(
       <Pagination currentPage={1} onPageChange={() => {}} totalPages={2} />,
     );
-    expect(screen.getByText('1')).toBe(1);
-    expect(screen.getByText('2')).toBe(2);
+    expect(screen.getByText('1').children[0]).toBe('1');
+    expect(screen.getByText('2').children[0]).toBe('2');
   });
 
-  it.skip('should render three pages', () => {
+  it('should render three pages', () => {
     render(
       <Pagination currentPage={1} onPageChange={() => {}} totalPages={3} />,
     );
-    expect(screen.getByText('1')).toBe(1);
-    expect(screen.getByText('2')).toBe(2);
-    expect(screen.getByText('3')).toBe(3);
+    expect(screen.getByText('1').children[0]).toBe('1');
+    expect(screen.getByText('2').children[0]).toBe('2');
+    expect(screen.getByText('3').children[0]).toBe('3');
   });
 
-  it.skip('should return the clicked page', () => {
+  it('should return the total number of pages when last button is clicked', () => {
     const onPageChange = jest.fn();
+    const totalPages = 3;
     render(
       <Pagination
         currentPage={1}
-        onPageChange={() => onPageChange}
-        totalPages={3}
+        onPageChange={onPageChange}
+        totalPages={totalPages}
       />,
     );
-    expect(screen.getByText('1')).toBe(1);
-    expect(screen.getByText('2')).toBe(2);
-    expect(screen.getByText('3')).toBe(3);
+    expect(screen.getByText('1').children[0]).toBe('1');
+    expect(screen.getByText('2').children[0]).toBe('2');
+    expect(screen.getByText('3').children[0]).toBe('3');
 
-    screen.getByText('2').props.onPress();
-    expect(onPageChange).toHaveBeenCalledWith(2);
+    const lastButton = screen.getByTestId('lastButton');
+
+    lastButton?.props.onClick();
+
+    expect(onPageChange).toHaveBeenCalledTimes(1);
+    expect(onPageChange).toHaveBeenCalledWith(totalPages);
   });
 });

@@ -17,7 +17,7 @@ const Pagination = ({
     // first page button
     pageButtons.push(
       <TouchableOpacity
-        key="first"
+        key="firstButton"
         style={[styles.pageButton]}
         onPress={() => onPageChange(1)}>
         <Text style={styles.pageText}>{'<<'}</Text>
@@ -27,7 +27,7 @@ const Pagination = ({
     if (currentPage > 1) {
       pageButtons.push(
         <TouchableOpacity
-          key="prev"
+          key="prevButton"
           style={[styles.pageButton]}
           onPress={() => onPageChange(currentPage - 1)}>
           <Text style={styles.pageText}>{'<'}</Text>
@@ -58,7 +58,7 @@ const Pagination = ({
     if (currentPage < totalPages) {
       pageButtons.push(
         <TouchableOpacity
-          key="next"
+          key="nextButton"
           style={[styles.pageButton]}
           onPress={() => onPageChange(currentPage + 1)}>
           <Text style={styles.pageText}>{'>'}</Text>
@@ -68,7 +68,8 @@ const Pagination = ({
     // last page button
     pageButtons.push(
       <TouchableOpacity
-        key="last"
+        key="lastButton"
+        testID="lastButton"
         style={[styles.pageButton]}
         onPress={() => onPageChange(totalPages)}>
         <Text style={styles.pageText}>{'>>'}</Text>
