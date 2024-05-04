@@ -1,10 +1,7 @@
 import React from 'react';
 import {memo} from 'react';
 import {TitleProps} from './title.types';
-import {createText} from '@shopify/restyle';
-import {ThemeProps} from '../../theme';
-
-const Text = createText<ThemeProps>();
+import {Text} from '../text';
 
 const TitleBase = ({name}: TitleProps) => {
   return (

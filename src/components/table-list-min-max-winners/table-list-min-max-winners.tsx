@@ -1,11 +1,7 @@
 import React from 'react';
 import {TouchableHighlight, FlatList, ActivityIndicator} from 'react-native';
-import {ThemeProps} from '../../theme';
-import {createText} from '@shopify/restyle';
 import {TableListProps} from './table-list-min-max-winners.types';
-import {Box} from '@golden-raspberry-awards/shared/box';
-
-const Text = createText<ThemeProps>();
+import {Box, Text} from '@golden-raspberry-awards/shared';
 
 const TableListMinMaxWinnersBase = ({
   label,

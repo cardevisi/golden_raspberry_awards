@@ -6,12 +6,8 @@ import {
   TextInput,
   StyleSheet,
 } from 'react-native';
-import {ThemeProps} from '../../theme';
-import {createText} from '@shopify/restyle';
 import {TableListProps} from './table-list-movies.types';
-import {Box} from '@golden-raspberry-awards/shared/box';
-
-const Text = createText<ThemeProps>();
+import {Box, Text} from '@golden-raspberry-awards/shared';
 
 const TableListMoviesBase = ({
   label,
