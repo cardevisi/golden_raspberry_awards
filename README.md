@@ -1,18 +1,16 @@
 # :: Golden Raspberry Award ::
 
-This project is part of a technical challenge for a position as a front-end enginner.
-
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+This project is part of a technical challenge for a position as a front-end enginner. Bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+>**Note**: Problems with environment? Intructions here [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup).
 
 ## Step 1: Start the Metro Server
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+After you clone the **golden_raspbarry_awards** from this repository. Access the root of application **golden_raspbarry_awards** Ex. cd golden_raspbarry_awards.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+Start Metro, running the following command from the _root_ of your Golden Raspberry Awards application:
 
 ```bash
 # using npm
@@ -22,9 +20,9 @@ npm start
 yarn start
 ```
 
-## Step 2: Start your Application
+## Step 2: Start the Application
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of the Golden Raspberry Awards project. Run the following command to start your _Android_ or _iOS_ app:
 
 ### For Android
 
@@ -46,11 +44,9 @@ npm run ios
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+If everything is set up _correctly_, you should see the Golden Raspberry Awards app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-You've successfully run and modified your React Native App. :partying_face:
 
 # Troubleshooting
 
@@ -64,4 +60,5 @@ To learn more about React Native, take a look at the following resources:
 - [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+ [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
