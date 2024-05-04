@@ -4,7 +4,7 @@ import {MoviesProps} from './movies.types';
 import {Title} from '@golden-raspberry-awards/shared';
 import {TableListMoviesBase} from '@golden-raspberry-awards/shared/table-list-movies';
 import {useGetMovies} from './hooks/use-get-movies';
-import {ActivityIndicator, ScrollView} from 'react-native';
+import {ActivityIndicator, Alert, ScrollView} from 'react-native';
 import Pagination from '@golden-raspberry-awards/shared/pagination/pagination';
 import {WinnerStatus} from './types/winner-status';
 import {Box} from '@golden-raspberry-awards/shared/box';
@@ -62,7 +62,8 @@ const MoviesBase = ({name}: MoviesProps) => {
           justifyContent="space-between"
           backgroundColor="black"
           alignContent="center"
-          alignItems="center">
+          alignItems="center"
+          paddingHorizontal="s">
           <Title name={name} />
           {isLoading ? (
             <ActivityIndicator size="small" aria-label="activity-indicator" />
@@ -87,7 +88,9 @@ const MoviesBase = ({name}: MoviesProps) => {
           isLoading={false}
           label="Filter by Year and Winner Status"
           data={movies}
-          onPress={() => {}}
+          onPress={item => {
+            Alert.alert(item.title, item.year.toString());
+          }}
         />
       </Box>
     </ScrollView>

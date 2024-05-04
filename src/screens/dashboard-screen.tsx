@@ -4,7 +4,7 @@ import {Box} from '@golden-raspberry-awards/shared/box';
 
 function DashboardScreen() {
   return (
-    <Box flex={1} bg="black">
+    <Box flex={1} bg="black" paddingTop="xl">
       <Dashboard name="Dashboard" />
     </Box>
   );

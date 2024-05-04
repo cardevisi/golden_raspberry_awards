@@ -7,10 +7,23 @@ import {ThemeProvider} from '@shopify/restyle';
 
 import theme from '../theme';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import {tabNavigatorScreenOptions} from './config';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const Tab = createBottomTabNavigator();
 const queryClient = new QueryClient();
+
+const tabNavigatorScreenOptions = {
+  headerShown: false,
+  tabBarStyle: {
+    backgroundColor: theme.colors.black,
+    borderTopColor: theme.colors.white,
+    height: 80,
+    paddingBottom: 20,
+    paddingTop: 10,
+  },
+  tabBarHideOnKeyboard: true,
+  tabBarShowLabel: true,
+};
 
 function App(): React.JSX.Element {
   return (
@@ -19,9 +32,25 @@ function App(): React.JSX.Element {
         <NavigationContainer>
           <Tab.Navigator
             initialRouteName="Dashboard"
-            screenOptions={() => tabNavigatorScreenOptions(theme)}>
-            <Tab.Screen name="Dashboard" component={DashboardScreen} />
-            <Tab.Screen name="Movies" component={MoviesScreen} />
+            screenOptions={tabNavigatorScreenOptions}>
+            <Tab.Screen
+              name="Dashboard"
+              component={DashboardScreen}
+              options={{
+                tabBarIcon: ({color, size}) => (
+                  <MaterialIcons name="dashboard" color={color} size={size} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Movies"
+              component={MoviesScreen}
+              options={{
+                tabBarIcon: ({color, size}) => (
+                  <MaterialIcons name="home" color={color} size={size} />
+                ),
+              }}
+            />
           </Tab.Navigator>
         </NavigationContainer>
       </QueryClientProvider>
