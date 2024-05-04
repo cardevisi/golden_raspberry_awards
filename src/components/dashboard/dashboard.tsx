@@ -65,7 +65,7 @@ const DashboardBase = ({name}: DashboardProps) => {
   }, [refetchWinnersByYear, selectedWinnersByYear]);
 
   return (
-    <KeyboardAvoidingView behavior="padding">
+    <KeyboardAvoidingView behavior="position">
       <ScrollView>
         <Box bg="black" flex={1} paddingHorizontal="s">
           <Box
