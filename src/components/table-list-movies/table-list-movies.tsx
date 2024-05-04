@@ -51,6 +51,7 @@ const TableListMoviesBase = ({
                 maxLength={4}
                 onChangeText={onChangeYearTextInput}
                 keyboardType="numeric"
+                placeholderTextColor="black"
                 placeholder="Filter by Year"
                 style={styles.input}
               />
@@ -59,6 +60,7 @@ const TableListMoviesBase = ({
               <TextInput
                 onChangeText={onChangeWinnerTextInput}
                 placeholder="Filter by Winner?"
+                placeholderTextColor="black"
                 style={styles.input}
               />
             </Box>

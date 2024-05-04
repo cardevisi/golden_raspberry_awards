@@ -23,6 +23,7 @@ function SearchBar({
         value={searchPhrase}
         onChangeText={setSearchPhrase}
         maxLength={maxLength}
+        placeholderTextColor="black"
         inputMode={inputMode}
         keyboardType="default"
       />
