@@ -7,7 +7,12 @@ import {
   TableListMultipleWinnersBase,
   TableListWinnersByYearBase,
 } from '../../components';
-import {ActivityIndicator, Alert, ScrollView} from 'react-native';
+import {
+  ActivityIndicator,
+  Alert,
+  KeyboardAvoidingView,
+  ScrollView,
+} from 'react-native';
 import {
   useMultipleWinnersByYears,
   useStudiosWithWinners,
@@ -60,79 +65,71 @@ const DashboardBase = ({name}: DashboardProps) => {
   }, [refetchWinnersByYear, selectedWinnersByYear]);
 
   return (
-    <ScrollView>
-      <Box bg="black" flex={1} paddingHorizontal="s">
-        <Box
-          flexDirection="row"
-          justifyContent="space-between"
-          backgroundColor="black"
-          alignContent="center"
-          alignItems="center"
-          paddingHorizontal="s">
-          <Title name={name} />
-          {isLoadingWinnersByYear &&
-          isLoadingMinMaxWins &&
-          isLoadingMultiplesWinnersByYear &&
-          isLoadingStudiosWithWinners ? (
-            <ActivityIndicator size="small" aria-label="activity-indicator" />
-          ) : null}
-        </Box>
-        <Box marginBottom="l" paddingHorizontal="s">
-          <Box flexDirection="column" marginBottom="s" borderRadius={5}>
-            <Text variant="body" color="white" fontWeight={'bold'}>
-              List years with multiple winners
-            </Text>
+    <KeyboardAvoidingView behavior="padding">
+      <ScrollView>
+        <Box bg="black" flex={1} paddingHorizontal="s">
+          <Box
+            flexDirection="row"
+            justifyContent="space-between"
+            backgroundColor="black"
+            alignContent="center"
+            alignItems="center"
+            paddingHorizontal="s">
+            <Title name={name} />
+            {isLoadingWinnersByYear &&
+            isLoadingMinMaxWins &&
+            isLoadingMultiplesWinnersByYear &&
+            isLoadingStudiosWithWinners ? (
+              <ActivityIndicator size="small" aria-label="activity-indicator" />
+            ) : null}
           </Box>
-          <TableListMultipleWinnersBase
-            isLoading={false}
-            data={queryResultMultiplesWinnersByYear?.years}
-            onPress={(item: any) => {
-              Alert.alert(
-                item.year.toString(),
-                `Number of winners: ${item.winnerCount.toString()}`,
-              );
-            }}
-          />
-        </Box>
-        <Box marginBottom="l" paddingHorizontal="s">
-          <Box flexDirection="column" marginBottom="s" borderRadius={5}>
-            <Text variant="body" color="white" fontWeight={'bold'}>
-              {`Top ${TOP_WINNERS} studios with winners`}
-            </Text>
+          <Box marginBottom="l" paddingHorizontal="s">
+            <Box flexDirection="column" marginBottom="s" borderRadius={5}>
+              <Text variant="body" color="white" fontWeight={'bold'}>
+                List years with multiple winners
+              </Text>
+            </Box>
+            <TableListMultipleWinnersBase
+              isLoading={false}
+              data={queryResultMultiplesWinnersByYear?.years}
+              onPress={(item: any) => {
+                Alert.alert(
+                  item.year.toString(),
+                  `Number of winners: ${item.winnerCount.toString()}`,
+                );
+              }}
+            />
           </Box>
-          <TableListTopWinnersBase
-            isLoading={false}
-            data={queryResultStudiosWithWinners}
-            onPress={(item: any) => {
-              Alert.alert(item.name, `Win count: ${item.winCount.toString()}`);
-            }}
-          />
-        </Box>
-        <Box marginBottom="l" paddingHorizontal="s">
-          <Box flexDirection="column" marginBottom="s" borderRadius={5}>
-            <Text variant="body" color="white" fontWeight={'bold'}>
-              Producers with longest and
-            </Text>
-            <Text variant="body" color="white" fontWeight={'bold'}>
-              shortest intervals
-            </Text>
+          <Box marginBottom="l" paddingHorizontal="s">
+            <Box flexDirection="column" marginBottom="s" borderRadius={5}>
+              <Text variant="body" color="white" fontWeight={'bold'}>
+                {`Top ${TOP_WINNERS} studios with winners`}
+              </Text>
+            </Box>
+            <TableListTopWinnersBase
+              isLoading={false}
+              data={queryResultStudiosWithWinners}
+              onPress={(item: any) => {
+                Alert.alert(
+                  item.name,
+                  `Win count: ${item.winCount.toString()}`,
+                );
+              }}
+            />
           </Box>
-          <TableListMinMaxWinnersBase
-            isLoading={false}
-            label={'Maximum'}
-            data={queryResultMaxWins}
-            onPress={(item: any) => {
-              Alert.alert(
-                item.producer,
-                `Interval: ${item.interval.toString()}`,
-              );
-            }}
-          />
-          <Box marginTop="s">
+          <Box marginBottom="l" paddingHorizontal="s">
+            <Box flexDirection="column" marginBottom="s" borderRadius={5}>
+              <Text variant="body" color="white" fontWeight={'bold'}>
+                Producers with longest and
+              </Text>
+              <Text variant="body" color="white" fontWeight={'bold'}>
+                shortest intervals
+              </Text>
+            </Box>
             <TableListMinMaxWinnersBase
               isLoading={false}
-              label={'Minimum'}
-              data={queryResultMinWins}
+              label={'Maximum'}
+              data={queryResultMaxWins}
               onPress={(item: any) => {
                 Alert.alert(
                   item.producer,
@@ -140,35 +137,48 @@ const DashboardBase = ({name}: DashboardProps) => {
                 );
               }}
             />
-          </Box>
-          <Box marginTop="l">
-            <Box flexDirection="column" marginBottom="s" borderRadius={5}>
-              <Text variant="body" color="white" fontWeight={'bold'}>
-                List movie winners by year
-              </Text>
+            <Box marginTop="s">
+              <TableListMinMaxWinnersBase
+                isLoading={false}
+                label={'Minimum'}
+                data={queryResultMinWins}
+                onPress={(item: any) => {
+                  Alert.alert(
+                    item.producer,
+                    `Interval: ${item.interval.toString()}`,
+                  );
+                }}
+              />
             </Box>
-            <SearchBar
-              searchPhrase={selectedWinnersByYear.toString()}
-              setSearchPhrase={yearValue => {
-                setSelectedWinnersByYear(yearValue);
-              }}
-              maxLength={4}
-              inputMode="numeric"
-            />
-            <TableListWinnersByYearBase
-              isLoading={false}
-              data={queryResultWinnersByYear}
-              onPress={(item: any) => {
-                Alert.alert(
-                  item.title,
-                  `Producers: ${item.producers.join(', ')}`,
-                );
-              }}
-            />
+            <Box marginTop="l">
+              <Box flexDirection="column" marginBottom="s" borderRadius={5}>
+                <Text variant="body" color="white" fontWeight={'bold'}>
+                  List movie winners by year
+                </Text>
+              </Box>
+              <SearchBar
+                searchPhrase={selectedWinnersByYear.toString()}
+                setSearchPhrase={yearValue => {
+                  setSelectedWinnersByYear(yearValue);
+                }}
+                maxLength={4}
+                inputMode="numeric"
+              />
+              <TableListWinnersByYearBase
+                isLoading={false}
+                data={queryResultWinnersByYear}
+                onPress={(item: any) => {
+                  Alert.alert(
+                    item.title,
+                    `Producers: ${item.producers.join(', ')}`,
+                  );
+                }}
+              />
+            </Box>
           </Box>
         </Box>
-      </Box>
-    </ScrollView>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 

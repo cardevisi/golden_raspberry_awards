@@ -24,6 +24,7 @@ function SearchBar({
         onChangeText={setSearchPhrase}
         maxLength={maxLength}
         inputMode={inputMode}
+        keyboardType="default"
       />
       {showSearchButtonClick && (
         <TouchableOpacity
