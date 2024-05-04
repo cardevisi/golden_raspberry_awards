@@ -1,21 +1,12 @@
 import React from 'react';
-import {
-  TouchableHighlight,
-  FlatList,
-  ActivityIndicator,
-  TextInput,
-  Button,
-  StyleSheet,
-} from 'react-native';
+import {TouchableHighlight, FlatList, ActivityIndicator} from 'react-native';
 import {TableListProps} from './table-list-winners-by-year.types';
 import {Box, Text} from '@golden-raspberry-awards/shared';
 
 const TableListWinnersByYearBase = ({
-  label,
   data,
   onPress,
   isLoading,
-  onPressSearchButton,
 }: TableListProps) => {
   const getBackgroundColor = (index: number) => {
     if (index % 2 === 0) {
@@ -28,7 +19,6 @@ const TableListWinnersByYearBase = ({
     return index === data.length - 1 ? 0 : 1;
   };
 
-  const [textInput, onChangeTextInput] = React.useState<string>('');
   return (
     <>
       {isLoading ? (
@@ -37,29 +27,7 @@ const TableListWinnersByYearBase = ({
         </Box>
       ) : (
         <>
-          <Box flexDirection="column" marginBottom="s" borderRadius={5}>
-            <Text variant="body" color="white" fontWeight={'bold'}>
-              {label}
-            </Text>
-          </Box>
-          <Box
-            marginBottom="s"
-            borderRadius={5}
-            flexDirection="row"
-            justifyContent="space-between">
-            <TextInput
-              maxLength={4}
-              value={textInput.toString()}
-              onChangeText={onChangeTextInput}
-              keyboardType="numeric"
-              placeholder="Year"
-              style={styles.input}
-            />
-            <Button
-              onPress={() => onPressSearchButton(textInput)}
-              title="Search"
-            />
-          </Box>
+          <Box flexDirection="column" marginBottom="s" borderRadius={5} />
           <FlatList
             data={data}
             scrollEnabled={false}
@@ -100,15 +68,15 @@ const TableListWinnersByYearBase = ({
   );
 };
 
-const styles = StyleSheet.create({
-  input: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 10,
-    borderRadius: 5,
-  },
-});
+// const styles = StyleSheet.create({
+//   input: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     padding: 10,
+//     borderRadius: 5,
+//   },
+// });
 
 export default TableListWinnersByYearBase;

@@ -16,15 +16,16 @@ import {
 } from './hooks';
 
 import {Box} from '@golden-raspberry-awards/shared/box';
-import {Title} from '@golden-raspberry-awards/shared';
+import {SearchBar, Title} from '@golden-raspberry-awards/shared';
 import {ThemeProps} from '../../theme';
 
 const Text = createText<ThemeProps>();
 
 const DashboardBase = ({name}: DashboardProps) => {
   const TOP_WINNERS = 5;
+  const [clicked, setClicked] = React.useState(false);
   const [selectedWinnersByYear, setSelectedWinnersByYear] =
-    React.useState<number>(2018);
+    React.useState<string>('2018');
 
   const {
     data: queryResultMultiplesWinnersByYear,
@@ -49,11 +50,13 @@ const DashboardBase = ({name}: DashboardProps) => {
   } = useWinnersByYear({year: selectedWinnersByYear});
 
   useEffect(() => {
-    setSelectedWinnersByYear(2018);
+    setSelectedWinnersByYear('2018');
   }, []);
 
   useEffect(() => {
-    refetchWinnersByYear();
+    if (selectedWinnersByYear !== '') {
+      refetchWinnersByYear();
+    }
   }, [refetchWinnersByYear, selectedWinnersByYear]);
 
   return (
@@ -131,13 +134,23 @@ const DashboardBase = ({name}: DashboardProps) => {
             />
           </Box>
           <Box marginTop="l">
-            <TableListWinnersByYearBase
-              onPressSearchButton={value => {
-                const yearValue = parseInt(value, 10);
+            <Box flexDirection="column" marginBottom="s" borderRadius={5}>
+              <Text variant="body" color="white" fontWeight={'bold'}>
+                List movie winners by year
+              </Text>
+            </Box>
+            <SearchBar
+              searchPhrase={selectedWinnersByYear.toString()}
+              setSearchPhrase={yearValue => {
                 setSelectedWinnersByYear(yearValue);
               }}
+              setClicked={setClicked}
+              clicked={clicked}
+              maxLength={4}
+              keyboardType="numeric"
+            />
+            <TableListWinnersByYearBase
               isLoading={false}
-              label={'List movie winners by year'}
               data={queryResultWinnersByYear}
               onPress={(item: any) => {
                 Alert.alert(
