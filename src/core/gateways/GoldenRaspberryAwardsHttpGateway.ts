@@ -1,5 +1,5 @@
-import {quickSortTopWinners} from '../../screens/components/dashboard/utils';
-import {WinnerStatus} from '../../screens/components/movies/types/winner-status';
+import {quickSortTopWinners} from '../../components/dashboard/utils';
+import {WinnerStatus} from '../../types/winner-status';
 import HttpClient from '../infra/httpClient';
 import GoldenRaspberryAwardsGateway from './GoldenRaspberryAwardsGateway';
 

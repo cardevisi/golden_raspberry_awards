@@ -1,4 +1,4 @@
-import {WinnerStatus} from '../../screens/components/movies/types/winner-status';
+import {WinnerStatus} from '../../types/winner-status';
 
 export default interface GoldenRaspberryAwardsGateway {
   getMovies({

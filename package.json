@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "workspaces": [
-    "src/**/shared"
+    "src/**/shared",
+    "src/**/core"
   ],
   "scripts": {
     "android": "react-native run-android",
@@ -14,6 +15,7 @@
   },
   "dependencies": {
     "@golden-raspberry-awards/shared": "^1.0.0",
+    "@golden-raspberry-awards/core": "^1.0.0",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
     "@shopify/restyle": "^2.4.4",

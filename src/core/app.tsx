@@ -47,7 +47,7 @@ function App(): React.JSX.Element {
               component={MoviesScreen}
               options={{
                 tabBarIcon: ({color, size}) => (
-                  <MaterialIcons name="home" color={color} size={size} />
+                  <MaterialIcons name="movie" color={color} size={size} />
                 ),
               }}
             />

@@ -1,0 +1,9 @@
+{
+  "name": "@golden-raspberry-awards/core",
+  "version": "1.0.0",
+  "description": "Core for general use",
+  "main": "./index.ts",
+  "keywords": [],
+  "author": "Carlos Oliveira <cardevisi@gmail.com>",
+  "license": "ISC"
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dashboard} from './components/dashboard';
+import {Dashboard} from '../components';
 import {Box} from '@golden-raspberry-awards/shared/box';
 
 function DashboardScreen() {
