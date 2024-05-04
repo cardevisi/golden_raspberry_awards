@@ -24,8 +24,6 @@ const Text = createText<ThemeProps>();
 const DashboardBase = ({name}: DashboardProps) => {
   const TOP_WINNERS = 3;
   const DEFAULT_WINNER_YEAR = '2018';
-
-  const [clicked] = React.useState(true);
   const [selectedWinnersByYear, setSelectedWinnersByYear] =
     React.useState<string>(DEFAULT_WINNER_YEAR);
 
@@ -154,7 +152,6 @@ const DashboardBase = ({name}: DashboardProps) => {
               setSearchPhrase={yearValue => {
                 setSelectedWinnersByYear(yearValue);
               }}
-              showSearchButtonClick={clicked}
               maxLength={4}
               inputMode="numeric"
             />
