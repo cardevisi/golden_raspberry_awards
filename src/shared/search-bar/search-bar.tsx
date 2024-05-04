@@ -7,6 +7,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 function SearchBar({
   showSearchButtonClick = false,
+  onSearchButtonClick,
   searchPhrase,
   setSearchPhrase,
   maxLength,
@@ -28,7 +29,9 @@ function SearchBar({
         <TouchableOpacity
           style={styleElements.button}
           onPress={() => {
-            setSearchPhrase(searchPhrase);
+            if (onSearchButtonClick) {
+              onSearchButtonClick(searchPhrase);
+            }
           }}>
           <MaterialIcons name="search" size={30} color="black" />
         </TouchableOpacity>

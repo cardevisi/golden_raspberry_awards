@@ -25,7 +25,7 @@ const DashboardBase = ({name}: DashboardProps) => {
   const TOP_WINNERS = 3;
   const DEFAULT_WINNER_YEAR = '2018';
 
-  const [clicked] = React.useState(false);
+  const [clicked] = React.useState(true);
   const [selectedWinnersByYear, setSelectedWinnersByYear] =
     React.useState<string>(DEFAULT_WINNER_YEAR);
 

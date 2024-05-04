@@ -14,7 +14,6 @@ describe('TableList', () => {
   it('should render a table list with 4 rows', () => {
     render(
       <TableListMultipleWinnersBase
-        label="test"
         data={[
           {year: 2022, winnerCount: 5},
           {year: 2018, winnerCount: 100},
@@ -33,7 +32,6 @@ describe('TableList', () => {
     render(
       <TableListMultipleWinnersBase
         isLoading={false}
-        label="test"
         data={[
           {year: 2022, winnerCount: 5},
           {year: 2018, winnerCount: 100},
