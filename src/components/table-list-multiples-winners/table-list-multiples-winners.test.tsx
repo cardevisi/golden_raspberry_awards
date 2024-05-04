@@ -22,6 +22,7 @@ describe('TableList', () => {
           {year: 1998, winnerCount: 30},
         ]}
         onPress={() => {}}
+        isLoading={false}
       />,
     );
     expect(screen.getAllByText('Year:').length).toBe(4);
@@ -31,6 +32,7 @@ describe('TableList', () => {
     const onPress = jest.fn();
     render(
       <TableListMultipleWinnersBase
+        isLoading={false}
         label="test"
         data={[
           {year: 2022, winnerCount: 5},
@@ -43,21 +45,5 @@ describe('TableList', () => {
     );
     screen.getAllByLabelText('table-list-item')[0].props.onClick();
     expect(onPress).toHaveBeenCalledWith({winnerCount: 5, year: 2022});
-  });
-
-  it('should render a label', () => {
-    render(
-      <TableListMultipleWinnersBase
-        label="test"
-        data={[
-          {year: 2022, winnerCount: 5},
-          {year: 2018, winnerCount: 100},
-          {year: 2022, winnerCount: 10},
-          {year: 1998, winnerCount: 30},
-        ]}
-        onPress={() => {}}
-      />,
-    );
-    expect(screen.getByText('test')).toBeTruthy();
   });
 });

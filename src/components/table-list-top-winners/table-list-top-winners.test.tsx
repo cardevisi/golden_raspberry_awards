@@ -21,7 +21,7 @@ describe('TableList', () => {
   it('should render a table list with 4 rows', () => {
     render(
       <TableListTopWinnersBase
-        label="test"
+        isLoading={false}
         data={mockListWinnersTop}
         onPress={() => {}}
       />,
@@ -33,7 +33,7 @@ describe('TableList', () => {
     const onPress = jest.fn();
     render(
       <TableListTopWinnersBase
-        label="test"
+        isLoading={false}
         data={mockListWinnersTop}
         onPress={onPress}
       />,
@@ -43,16 +43,5 @@ describe('TableList', () => {
       winCount: 5,
       name: 'Columbia Pictures',
     });
-  });
-
-  it('should render a label', () => {
-    render(
-      <TableListTopWinnersBase
-        label="test"
-        data={mockListWinnersTop}
-        onPress={() => {}}
-      />,
-    );
-    expect(screen.getByText('test')).toBeTruthy();
   });
 });

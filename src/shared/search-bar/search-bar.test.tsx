@@ -1,15 +1,14 @@
 import React from 'react';
-import {render, screen, waitFor, act} from '@testing-library/react-native';
+import {render, screen} from '@testing-library/react-native';
 import SearchBar from './search-bar';
 
 describe('SearchBar', () => {
   it('should render correctly with placeholder', () => {
     render(
       <SearchBar
+        showSeachButtonClick={false}
         searchPhrase="2018"
         setSearchPhrase={() => {}}
-        clicked={false}
-        setClicked={() => {}}
         maxLength={4}
         placeholder="Search by Year"
       />,

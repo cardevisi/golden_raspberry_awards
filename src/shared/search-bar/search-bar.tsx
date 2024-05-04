@@ -1,35 +1,37 @@
 import React from 'react';
-import {Button, TextInput} from 'react-native';
+import {TextInput, TouchableOpacity} from 'react-native';
 import {Box} from '../box';
-import {SearchBarProps, keyboardTypes} from './search-bar.type';
-import styles from './search-bar.styles';
+import {SearchBarProps} from './search-bar.type';
+import {getStyle} from './search-bar.styles';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 function SearchBar({
-  clicked,
+  showSearchButtonClick = false,
   searchPhrase,
   setSearchPhrase,
-  setClicked,
   maxLength,
-  keyboardType = keyboardTypes.default,
+  inputMode,
   placeholder = 'Search',
 }: SearchBarProps) {
+  const styleElements = getStyle(showSearchButtonClick);
   return (
     <Box flexDirection="row" justifyContent="space-between" borderRadius={5}>
       <TextInput
-        style={styles.input}
+        style={styleElements.input}
         placeholder={placeholder}
         value={searchPhrase}
         onChangeText={setSearchPhrase}
-        onFocus={() => {
-          setClicked(true);
-        }}
         maxLength={maxLength}
-        keyboardType={keyboardType}
+        inputMode={inputMode}
       />
-      {clicked && (
-        <Box>
-          <Button title="Cancel" onPress={() => setClicked(false)} />
-        </Box>
+      {showSearchButtonClick && (
+        <TouchableOpacity
+          style={styleElements.button}
+          onPress={() => {
+            setSearchPhrase(searchPhrase);
+          }}>
+          <MaterialIcons name="search" size={30} color="black" />
+        </TouchableOpacity>
       )}
     </Box>
   );

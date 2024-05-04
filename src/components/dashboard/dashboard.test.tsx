@@ -110,7 +110,7 @@ describe('Dashboard', () => {
     });
 
     render(<DashboardBase name="Dashboard Screen" />);
-    expect(screen.getByText('Top 5 studios with winners')).toBeTruthy();
+    expect(screen.getByText('Top 3 studios with winners')).toBeTruthy();
     expect(screen.getAllByText('Name:').length).toBe(4);
     expect(screen.getAllByText('Win count:').length).toBe(4);
   });

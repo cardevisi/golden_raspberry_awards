@@ -11,7 +11,7 @@ const goldenRaspberryAwardsGateway = new GoldenRaspberryAwardsHttpGateway(
   BASE_URL,
 );
 
-const useWinnersByYear = ({year}: {year: number}) => {
+const useWinnersByYear = ({year}: {year: string}) => {
   const {
     data: raw,
     error,

@@ -22,10 +22,12 @@ import {ThemeProps} from '../../theme';
 const Text = createText<ThemeProps>();
 
 const DashboardBase = ({name}: DashboardProps) => {
-  const TOP_WINNERS = 5;
-  const [clicked, setClicked] = React.useState(false);
+  const TOP_WINNERS = 3;
+  const DEFAULT_WINNER_YEAR = '2018';
+
+  const [clicked] = React.useState(false);
   const [selectedWinnersByYear, setSelectedWinnersByYear] =
-    React.useState<string>('2018');
+    React.useState<string>(DEFAULT_WINNER_YEAR);
 
   const {
     data: queryResultMultiplesWinnersByYear,
@@ -50,7 +52,7 @@ const DashboardBase = ({name}: DashboardProps) => {
   } = useWinnersByYear({year: selectedWinnersByYear});
 
   useEffect(() => {
-    setSelectedWinnersByYear('2018');
+    setSelectedWinnersByYear(DEFAULT_WINNER_YEAR);
   }, []);
 
   useEffect(() => {
@@ -78,9 +80,13 @@ const DashboardBase = ({name}: DashboardProps) => {
           ) : null}
         </Box>
         <Box marginBottom="l" paddingHorizontal="s">
+          <Box flexDirection="column" marginBottom="s" borderRadius={5}>
+            <Text variant="body" color="white" fontWeight={'bold'}>
+              List years with multiple winners
+            </Text>
+          </Box>
           <TableListMultipleWinnersBase
             isLoading={false}
-            label="List years with multiple winners"
             data={queryResultMultiplesWinnersByYear?.years}
             onPress={(item: any) => {
               Alert.alert(
@@ -91,9 +97,13 @@ const DashboardBase = ({name}: DashboardProps) => {
           />
         </Box>
         <Box marginBottom="l" paddingHorizontal="s">
+          <Box flexDirection="column" marginBottom="s" borderRadius={5}>
+            <Text variant="body" color="white" fontWeight={'bold'}>
+              {`Top ${TOP_WINNERS} studios with winners`}
+            </Text>
+          </Box>
           <TableListTopWinnersBase
             isLoading={false}
-            label={`Top ${TOP_WINNERS} studios with winners`}
             data={queryResultStudiosWithWinners}
             onPress={(item: any) => {
               Alert.alert(item.name, `Win count: ${item.winCount.toString()}`);
@@ -144,10 +154,9 @@ const DashboardBase = ({name}: DashboardProps) => {
               setSearchPhrase={yearValue => {
                 setSelectedWinnersByYear(yearValue);
               }}
-              setClicked={setClicked}
-              clicked={clicked}
+              showSearchButtonClick={clicked}
               maxLength={4}
-              keyboardType="numeric"
+              inputMode="numeric"
             />
             <TableListWinnersByYearBase
               isLoading={false}
