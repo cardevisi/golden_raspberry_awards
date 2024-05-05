@@ -10,7 +10,6 @@ import {TableListProps} from './table-list-movies.types';
 import {Box, Text} from '@golden-raspberry-awards/shared';
 
 const TableListMoviesBase = ({
-  label,
   data,
   onPress,
   isLoading,
@@ -36,11 +35,6 @@ const TableListMoviesBase = ({
         </Box>
       ) : (
         <>
-          <Box flexDirection="column" marginBottom="s" borderRadius={5}>
-            <Text variant="body" color="white" fontWeight={'bold'}>
-              {label}
-            </Text>
-          </Box>
           <Box
             marginBottom="s"
             borderRadius={5}

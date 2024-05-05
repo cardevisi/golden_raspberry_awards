@@ -72,7 +72,7 @@ const DashboardBase = ({name}: DashboardProps) => {
       style={styles.keyboardAvoidingContainer}
       enabled>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>
-        <Box paddingHorizontal="s">
+        <Box paddingHorizontal="m">
           <Title name={name} />
         </Box>
         <Box paddingHorizontal="s" flex={1} justifyContent="center">
@@ -87,7 +87,7 @@ const DashboardBase = ({name}: DashboardProps) => {
             <>
               <Box marginBottom="l" paddingHorizontal="s">
                 <Box flexDirection="column" marginBottom="s" borderRadius={5}>
-                  <Text variant="body" color="white" fontWeight={'bold'}>
+                  <Text variant="subheader" color="white" fontWeight={'bold'}>
                     List years with multiple winners
                   </Text>
                 </Box>
@@ -104,7 +104,7 @@ const DashboardBase = ({name}: DashboardProps) => {
               </Box>
               <Box marginBottom="l" paddingHorizontal="s">
                 <Box flexDirection="column" marginBottom="s" borderRadius={5}>
-                  <Text variant="body" color="white" fontWeight={'bold'}>
+                  <Text variant="subheader" color="white" fontWeight={'bold'}>
                     {`Top ${TOP_WINNERS} studios with winners`}
                   </Text>
                 </Box>
@@ -121,10 +121,10 @@ const DashboardBase = ({name}: DashboardProps) => {
               </Box>
               <Box marginBottom="l" paddingHorizontal="s">
                 <Box flexDirection="column" marginBottom="s" borderRadius={5}>
-                  <Text variant="body" color="white" fontWeight={'bold'}>
+                  <Text variant="subheader" color="white" fontWeight={'bold'}>
                     Producers with longest and
                   </Text>
-                  <Text variant="body" color="white" fontWeight={'bold'}>
+                  <Text variant="subheader" color="white" fontWeight={'bold'}>
                     shortest intervals
                   </Text>
                 </Box>
@@ -154,7 +154,7 @@ const DashboardBase = ({name}: DashboardProps) => {
                 </Box>
                 <Box marginTop="l">
                   <Box flexDirection="column" marginBottom="s" borderRadius={5}>
-                    <Text variant="body" color="white" fontWeight={'bold'}>
+                    <Text variant="subheader" color="white" fontWeight={'bold'}>
                       List movie winners by year
                     </Text>
                   </Box>
