@@ -75,6 +75,9 @@ const DashboardBase = ({name}: DashboardProps) => {
         <Box paddingHorizontal="m">
           <Title name={name} />
         </Box>
+        {/**
+         * TODO - Implement error handling
+         */}
         <Box paddingHorizontal="s" flex={1} justifyContent="center">
           {isLoadingWinnersByYear &&
           isLoadingMinMaxWins &&

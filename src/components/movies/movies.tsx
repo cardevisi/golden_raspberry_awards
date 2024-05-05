@@ -66,6 +66,9 @@ const MoviesBase = ({name}: MoviesProps) => {
             Filter by Year and Winner Status
           </Text>
         </Box>
+        {/**
+         * TODO - Implement error handling
+         */}
         {isLoading ? (
           <ActivityIndicator size="small" aria-label="activity-indicator" />
         ) : (
