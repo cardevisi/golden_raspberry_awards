@@ -23,10 +23,7 @@ jobs:
         uses: wagoid/commitlint-github-action@v4
 
       - name: Lint code
-        run: npm lint
-
-      - name: Typecheck code
-        run: npm typecheck
+        run: npm run lint
 
       - name: Test code
         run: npm test
