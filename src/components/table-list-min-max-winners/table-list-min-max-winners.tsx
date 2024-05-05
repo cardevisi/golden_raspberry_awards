@@ -1,11 +1,15 @@
 import React from 'react';
-import {TouchableHighlight, FlatList, ActivityIndicator} from 'react-native';
+import {TouchableHighlight, ActivityIndicator} from 'react-native';
 import {TableListProps} from './table-list-min-max-winners.types';
 import {Box, Text} from '@golden-raspberry-awards/shared';
+import {
+  getConditionalBackgroundColor,
+  getConditionalLastBorder,
+} from '../utils';
 
 const TableListMinMaxWinnersBase = ({
   label,
-  data,
+  data: tableListData,
   onPress,
   isLoading,
 }: TableListProps) => {
@@ -22,24 +26,23 @@ const TableListMinMaxWinnersBase = ({
               {label}
             </Text>
           </Box>
-          <FlatList
-            data={data}
-            scrollEnabled={false}
-            renderItem={({item, index, separators}) => (
+          {tableListData &&
+            tableListData.map((item: any, index: any) => (
               <TouchableHighlight
-                key={item.id}
+                key={`table_list_min_max_winners_item_${index}`}
                 onPress={() => onPress(item)}
-                onShowUnderlay={separators.highlight}
-                onHideUnderlay={separators.unhighlight}
                 aria-label="table-list-item">
                 <Box
-                  bg={index % 2 === 0 ? 'primary_001' : 'primary_005'}
+                  bg={getConditionalBackgroundColor(index)}
                   padding="s"
                   flexDirection="column"
                   justifyContent="space-between"
                   borderBottomColor="primary_005"
                   borderRadius={10}
-                  borderBottomWidth={index === data.length - 1 ? 0 : 1}>
+                  borderBottomWidth={getConditionalLastBorder(
+                    index,
+                    tableListData.length,
+                  )}>
                   <Text variant="body" color="white">
                     <Text variant="body" color="white" fontWeight={'bold'}>
                       Producer:
@@ -66,8 +69,7 @@ const TableListMinMaxWinnersBase = ({
                   </Text>
                 </Box>
               </TouchableHighlight>
-            )}
-          />
+            ))}
         </>
       )}
     </>

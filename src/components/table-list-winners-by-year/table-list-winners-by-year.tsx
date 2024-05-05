@@ -1,24 +1,17 @@
 import React from 'react';
-import {TouchableHighlight, FlatList, ActivityIndicator} from 'react-native';
+import {TouchableHighlight, ActivityIndicator} from 'react-native';
 import {TableListProps} from './table-list-winners-by-year.types';
 import {Box, Text} from '@golden-raspberry-awards/shared';
+import {
+  getConditionalBackgroundColor,
+  getConditionalLastBorder,
+} from '../utils';
 
 const TableListWinnersByYearBase = ({
-  data,
+  data: tableListData,
   onPress,
   isLoading,
 }: TableListProps) => {
-  const getBackgroundColor = (index: number) => {
-    if (index % 2 === 0) {
-      return 'primary_001';
-    }
-    return 'primary_005';
-  };
-
-  const getConditionalLastBorder = (index: number) => {
-    return index === data.length - 1 ? 0 : 1;
-  };
-
   return (
     <>
       {isLoading ? (
@@ -28,24 +21,23 @@ const TableListWinnersByYearBase = ({
       ) : (
         <>
           <Box flexDirection="column" marginBottom="s" borderRadius={5} />
-          <FlatList
-            data={data}
-            scrollEnabled={false}
-            renderItem={({item, index, separators}) => (
+          {tableListData &&
+            tableListData.map((item: any, index: any) => (
               <TouchableHighlight
-                key={item.id}
+                key={`table_list_winners_by_year_item_${index}`}
                 onPress={() => onPress(item)}
-                onShowUnderlay={separators.highlight}
-                onHideUnderlay={separators.unhighlight}
                 aria-label="table-list-item">
                 <Box
-                  bg={`${getBackgroundColor(index)}`}
+                  bg={`${getConditionalBackgroundColor(index)}`}
                   padding="s"
                   flexDirection="column"
                   justifyContent="space-between"
                   borderRadius={5}
                   borderBottomColor="primary_005"
-                  borderBottomWidth={getConditionalLastBorder(index)}>
+                  borderBottomWidth={getConditionalLastBorder(
+                    index,
+                    tableListData.length,
+                  )}>
                   <Text variant="body" color="white">
                     <Text variant="body" color="white" fontWeight={'bold'}>
                       Year:
@@ -60,23 +52,11 @@ const TableListWinnersByYearBase = ({
                   </Text>
                 </Box>
               </TouchableHighlight>
-            )}
-          />
+            ))}
         </>
       )}
     </>
   );
 };
-
-// const styles = StyleSheet.create({
-//   input: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     padding: 10,
-//     borderRadius: 5,
-//   },
-// });
 
 export default TableListWinnersByYearBase;

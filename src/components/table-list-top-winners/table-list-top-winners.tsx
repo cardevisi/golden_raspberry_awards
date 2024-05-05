@@ -1,10 +1,14 @@
 import React from 'react';
-import {TouchableHighlight, FlatList, ActivityIndicator} from 'react-native';
+import {TouchableHighlight, ActivityIndicator} from 'react-native';
 import {TableListProps} from './table-list-top-winners.types';
 import {Box, Text} from '@golden-raspberry-awards/shared';
+import {
+  getConditionalBackgroundColor,
+  getConditionalLastBorder,
+} from '../utils';
 
 const TableListTopWinnersBase = ({
-  data,
+  data: tableListData,
   onPress,
   isLoading,
 }: TableListProps) => {
@@ -15,40 +19,40 @@ const TableListTopWinnersBase = ({
           <ActivityIndicator size="small" aria-label="activity-indicator" />
         </Box>
       ) : (
-        <FlatList
-          data={data}
-          scrollEnabled={false}
-          renderItem={({item, index, separators}) => (
-            <TouchableHighlight
-              key={item.id}
-              onPress={() => onPress(item)}
-              onShowUnderlay={separators.highlight}
-              onHideUnderlay={separators.unhighlight}
-              aria-label="table-list-item">
-              <Box
-                bg={index % 2 === 0 ? 'primary_001' : 'primary_005'}
-                padding="s"
-                flexDirection="column"
-                justifyContent="space-between"
-                borderBottomColor="primary_005"
-                borderRadius={10}
-                borderBottomWidth={index === data.length - 1 ? 0 : 1}>
-                <Text variant="body" color="white">
-                  <Text variant="body" color="white" fontWeight={'bold'}>
-                    Name:
+        <>
+          {tableListData &&
+            tableListData.map((item: any, index: any) => (
+              <TouchableHighlight
+                key={`table_list_top_winners_item_${index}`}
+                onPress={() => onPress(item)}
+                aria-label="table-list-item">
+                <Box
+                  bg={getConditionalBackgroundColor(index)}
+                  padding="s"
+                  flexDirection="column"
+                  justifyContent="space-between"
+                  borderBottomColor="primary_005"
+                  borderRadius={10}
+                  borderBottomWidth={getConditionalLastBorder(
+                    index,
+                    tableListData.length,
+                  )}>
+                  <Text variant="body" color="white">
+                    <Text variant="body" color="white" fontWeight={'bold'}>
+                      Name:
+                    </Text>
+                    {` ${item.name}`}
                   </Text>
-                  {` ${item.name}`}
-                </Text>
-                <Text variant="body" color="white">
-                  <Text variant="body" color="white" fontWeight={'bold'}>
-                    Win count:
+                  <Text variant="body" color="white">
+                    <Text variant="body" color="white" fontWeight={'bold'}>
+                      Win count:
+                    </Text>
+                    {` ${item.winCount}`}
                   </Text>
-                  {` ${item.winCount}`}
-                </Text>
-              </Box>
-            </TouchableHighlight>
-          )}
-        />
+                </Box>
+              </TouchableHighlight>
+            ))}
+        </>
       )}
     </>
   );
