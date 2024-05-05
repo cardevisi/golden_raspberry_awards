@@ -59,7 +59,7 @@ const TableListMoviesBase = ({
             <Box width={'50%'} height={40}>
               <TextInput
                 onChangeText={onChangeWinnerTextInput}
-                placeholder="Filter by Winner?"
+                placeholder="Filter by Winner? Yes/No"
                 placeholderTextColor="black"
                 style={styles.input}
               />
