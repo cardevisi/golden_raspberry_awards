@@ -12,7 +12,6 @@ import {
   Alert,
   KeyboardAvoidingView,
   ScrollView,
-  View,
 } from 'react-native';
 import {
   useMultipleWinnersByYears,
