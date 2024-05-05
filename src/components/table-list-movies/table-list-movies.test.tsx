@@ -30,9 +30,9 @@ describe('TableList', () => {
   it('should render a table list with year and title values', () => {
     render(
       <TableListMoviesBase
-        onPressSearchButton={() => {}}
+        onChangeWinnerTextInput={() => {}}
+        onChangeYearTextInput={() => {}}
         isLoading={false}
-        label="test"
         data={mockWinnersByYear}
         onPress={() => {}}
       />,
@@ -45,9 +45,9 @@ describe('TableList', () => {
     const onPress = jest.fn();
     render(
       <TableListMoviesBase
-        onPressSearchButton={() => {}}
+        onChangeWinnerTextInput={() => {}}
+        onChangeYearTextInput={() => {}}
         isLoading={false}
-        label="test"
         data={mockWinnersByYear}
         onPress={onPress}
       />,
@@ -66,18 +66,5 @@ describe('TableList', () => {
       winner: true,
       year: 2018,
     });
-  });
-
-  it('should render a label', () => {
-    render(
-      <TableListMoviesBase
-        onPressSearchButton={() => {}}
-        isLoading={false}
-        label="test"
-        data={mockWinnersByYear}
-        onPress={() => {}}
-      />,
-    );
-    expect(screen.getByText('test')).toBeTruthy();
   });
 });
