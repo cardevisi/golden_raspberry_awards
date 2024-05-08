@@ -1,4 +1,4 @@
-import GoldenRaspberryAwardsGateway from '@golden-raspberry-awards/core/gateways/GoldenRaspberryAwardsGateway';
+import {IGoldenRaspberryAwardsGateway} from '@golden-raspberry-awards/core/gateways';
 import {WinnerStatus} from '../../../../types/winner-status';
 
 export type UseGetMoviesProps = {
@@ -6,5 +6,5 @@ export type UseGetMoviesProps = {
   winnerStatus: WinnerStatus;
   page: number;
   size: number;
-  gateway: GoldenRaspberryAwardsGateway;
+  gateway: IGoldenRaspberryAwardsGateway;
 };

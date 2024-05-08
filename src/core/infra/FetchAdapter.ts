@@ -1,6 +1,6 @@
-import HttpClient from './httpClient';
+import IHttpClient from './IHttpClient';
 
-class FetchAdapter implements HttpClient {
+class FetchAdapter implements IHttpClient {
   async get(url: string): Promise<any> {
     const response = await fetch(url);
     return await response.json();

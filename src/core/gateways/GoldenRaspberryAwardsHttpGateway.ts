@@ -1,52 +1,43 @@
 import {quickSortTopWinners} from '../../components/dashboard/utils';
-import {WinnerStatus} from '../../types/winner-status';
-import HttpClient from '../infra/httpClient';
-import GoldenRaspberryAwardsGateway from './GoldenRaspberryAwardsGateway';
+import IHttpClient from '../infra/IHttpClient';
+import IGoldenRaspberryAwardsGateway from './IGoldenRaspberryAwardsGateway';
 import {GetMovieProps} from './GoldenRaspberryAwardsGateway.types';
+import {getWinnerStatus} from './utils/getWinnerStatus';
 
-class GoldenRaspberryAwardsHttpGateway implements GoldenRaspberryAwardsGateway {
-  constructor(readonly httpClient: HttpClient, readonly baseUrl: string) {}
+class GoldenRaspberryAwardsHttpGateway
+  implements IGoldenRaspberryAwardsGateway
+{
+  constructor(readonly httpClient: IHttpClient, readonly baseUrl: string) {}
 
   async getMultipleWinnersByYear(): Promise<any> {
-    const response = await fetch(
+    const response = await this.httpClient.get(
       `${this.baseUrl}?projection=years-with-multiple-winners`,
     );
-    return await response.json();
+    return response;
   }
 
   async getStudiosWithWinCount(topWinners: number): Promise<any> {
-    const response = await fetch(
+    const response = await this.httpClient.get(
       `${this.baseUrl}?projection=studios-with-win-count`,
     );
-    const sortedStudios = (await response.json()).studios;
+    const sortedStudios = response.studios;
     const topStudios = sortedStudios.slice(0, topWinners);
     return quickSortTopWinners(topStudios);
   }
 
   async getMaxMinWinIntervalForProducers(): Promise<any> {
-    const response = await fetch(
+    const response = await this.httpClient.get(
       `${this.baseUrl}?projection=max-min-win-interval-for-producers`,
     );
-    return await response.json();
+    return response;
   }
 
   async getMoviesByYear(winner: boolean, year: string): Promise<any> {
-    const response = await fetch(
+    const response = await this.httpClient.get(
       `${this.baseUrl}?winner=${winner}&year=${year}`,
     );
-    return await response.json();
+    return response;
   }
-
-  getWinnerValue = (winnerStatus: WinnerStatus) => {
-    if (winnerStatus === WinnerStatus.YES) {
-      return 'true';
-    }
-    if (winnerStatus === WinnerStatus.NO) {
-      return 'false';
-    }
-
-    return WinnerStatus.EMPTY;
-  };
 
   async getMovies({
     page,
@@ -54,12 +45,11 @@ class GoldenRaspberryAwardsHttpGateway implements GoldenRaspberryAwardsGateway {
     year,
     winnerStatus,
   }: GetMovieProps): Promise<any> {
-    const winnerStatusText = this.getWinnerValue(winnerStatus);
-
-    const response = await fetch(
-      `${this.baseUrl}?page=${page}&size=${size}&winner=${winnerStatusText}&year=${year}`,
+    const winnerStatusAsBooleanText = getWinnerStatus(winnerStatus);
+    const response = await this.httpClient.get(
+      `${this.baseUrl}?page=${page}&size=${size}&winner=${winnerStatusAsBooleanText}&year=${year}`,
     );
-    return await response.json();
+    return response;
   }
 }
 

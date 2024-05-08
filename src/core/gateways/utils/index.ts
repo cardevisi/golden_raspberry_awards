@@ -1,0 +1,1 @@
+export {getWinnerStatus} from './getWinnerStatus';

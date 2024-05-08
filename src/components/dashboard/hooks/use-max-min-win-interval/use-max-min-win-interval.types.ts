@@ -1,5 +1,5 @@
-import GoldenRaspberryAwardsGateway from '@golden-raspberry-awards/core/gateways/GoldenRaspberryAwardsGateway';
+import {IGoldenRaspberryAwardsGateway} from '@golden-raspberry-awards/core/gateways';
 
 export type UseMaxMinWinIntervalProps = {
-  gateway: GoldenRaspberryAwardsGateway;
+  gateway: IGoldenRaspberryAwardsGateway;
 };

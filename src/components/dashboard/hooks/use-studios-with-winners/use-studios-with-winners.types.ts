@@ -1,6 +1,6 @@
-import GoldenRaspberryAwardsGateway from '@golden-raspberry-awards/core/gateways/GoldenRaspberryAwardsGateway';
+import {IGoldenRaspberryAwardsGateway} from '@golden-raspberry-awards/core/gateways';
 
 export type UseStudiosWithWinnersProps = {
   topWinners: number;
-  gateway: GoldenRaspberryAwardsGateway;
+  gateway: IGoldenRaspberryAwardsGateway;
 };
