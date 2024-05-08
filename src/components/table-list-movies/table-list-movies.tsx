@@ -45,6 +45,7 @@ const TableListMoviesBase = ({
             {/**
              * TODO - Change this component to a select or a mask for values yes or no
              * TODO - Implement debounce for this field
+             * TODO -
              */}
             <Box width={'50%'} height={40}>
               <TextInput
@@ -93,7 +94,7 @@ const TableListMoviesBase = ({
                     </Text>
                     <Text variant="body" color="white">
                       <Text variant="body" color="white" fontWeight={'bold'}>
-                        Winner:
+                        Winner?:
                       </Text>
                       {` ${item.winner}`}
                     </Text>
