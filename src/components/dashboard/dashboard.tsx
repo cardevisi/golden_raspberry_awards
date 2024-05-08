@@ -140,8 +140,7 @@ const DashboardBase = ({name}: DashboardProps) => {
               <Box marginBottom="l" paddingHorizontal="s">
                 <Box flexDirection="column" marginBottom="s" borderRadius={5}>
                   <Text variant="subheader" color="white" fontWeight={'bold'}>
-                    Producers with longest and shortest intervals between
-                    winners
+                    Producers with longest and shortest intervals between wins
                   </Text>
                 </Box>
                 <TableListMinMaxWinnersBase
