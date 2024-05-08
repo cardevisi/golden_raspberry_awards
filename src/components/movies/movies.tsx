@@ -8,13 +8,14 @@ import {ActivityIndicator, Alert, ScrollView} from 'react-native';
 import Pagination from '@golden-raspberry-awards/shared/pagination/pagination';
 import {WinnerStatus} from '../../types/winner-status';
 import {Box} from '@golden-raspberry-awards/shared/box';
+import {PAGES} from '@golden-raspberry-awards/core';
 
 const MoviesBase = ({name}: MoviesProps) => {
-  const INIT_YEAR = 2018;
+  const INIT_YEAR = PAGES.MOVIES.initiYear;
   const CURRENT_PAGE = 1;
 
   const [currentPage, setCurrentPage] = React.useState<number>(CURRENT_PAGE);
-  const [selectedYear, setSelectedYear] = React.useState<number>(INIT_YEAR);
+  const [selectedYear, setSelectedYear] = React.useState<string>(INIT_YEAR);
   const [selectedWinnerStatus, setSelectedWinnerStatus] =
     React.useState<WinnerStatus>(WinnerStatus.YES);
 
@@ -27,12 +28,12 @@ const MoviesBase = ({name}: MoviesProps) => {
     year: selectedYear,
     winnerStatus: selectedWinnerStatus,
     page: currentPage - 1,
-    size: 99,
+    size: PAGES.MOVIES.sizeOfPagination,
   });
 
   useEffect(() => {
-    setSelectedYear(2018);
-  }, []);
+    setSelectedYear(INIT_YEAR);
+  }, [INIT_YEAR]);
 
   useEffect(() => {
     refetchWinnersByYear();
@@ -52,8 +53,7 @@ const MoviesBase = ({name}: MoviesProps) => {
     setSelectedWinnerStatus(winnerStatus);
   };
 
-  const handleOnChangeYearTextInput = (value: string) => {
-    const yearValue = parseInt(value, 10);
+  const handleOnChangeYearTextInput = (yearValue: string) => {
     setSelectedYear(yearValue);
   };
 

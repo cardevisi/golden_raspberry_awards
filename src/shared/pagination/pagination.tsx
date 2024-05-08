@@ -35,24 +35,18 @@ const Pagination = ({
       );
     }
 
-    const pageButtonsComponents = React.useMemo(
-      () =>
-        Array.from({length: totalPages}, (_, i) => i + 1).map(i => {
-          const buttonStyle =
-            i === currentPage ? {backgroundColor: 'blue'} : {};
-          const pageNumber: string = i.toString() || '';
-          return (
-            <TouchableOpacity
-              key={i}
-              style={[styles.pageButton, buttonStyle]}
-              onPress={() => onPageChange(i)}>
-              <Text style={styles.pageText}>{pageNumber}</Text>
-            </TouchableOpacity>
-          );
-        }),
-      [],
-    );
-    pageButtons.push(...pageButtonsComponents);
+    for (let i = 1; i <= totalPages; i++) {
+      const buttonStyle = i === currentPage ? {backgroundColor: 'blue'} : {};
+      const pageNumber: string = i.toString() || '';
+      pageButtons.push(
+        <TouchableOpacity
+          key={i}
+          style={[styles.pageButton, buttonStyle]}
+          onPress={() => onPageChange(i)}>
+          <Text style={styles.pageText}>{pageNumber}</Text>
+        </TouchableOpacity>,
+      );
+    }
 
     // navigation arrows
     if (currentPage < totalPages) {

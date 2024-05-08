@@ -1,10 +1,10 @@
 import {useQuery} from '@tanstack/react-query';
-import {WinnerStatus} from '../../../../types/winner-status';
 import {
   BASE_URL,
   FetchAdapter,
   GoldenRaspberryAwardsHttpGateway,
 } from '@golden-raspberry-awards/core';
+import {GetMovieProps} from '@golden-raspberry-awards/core/gateways/GoldenRaspberryAwardsGateway.types';
 
 const fetchAdapter = new FetchAdapter();
 const goldenRaspberryAwardsHttpGateway = new GoldenRaspberryAwardsHttpGateway(
@@ -16,13 +16,8 @@ const useGetMovies = ({
   year,
   winnerStatus,
   page = 0,
-  size = 99,
-}: {
-  year: number;
-  winnerStatus: WinnerStatus;
-  page?: number;
-  size?: number;
-}) => {
+  size = 10,
+}: GetMovieProps) => {
   const {
     data: raw,
     error,

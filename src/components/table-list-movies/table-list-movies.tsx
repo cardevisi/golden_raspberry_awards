@@ -29,6 +29,9 @@ const TableListMoviesBase = ({
             flexDirection="row"
             justifyContent="space-between">
             <Box width={'48%'} height={40} marginRight="s">
+              {/**
+               * TODO - Implement debounce for this field
+               */}
               <TextInput
                 maxLength={4}
                 onChangeText={onChangeYearTextInput}
@@ -65,6 +68,12 @@ const TableListMoviesBase = ({
                       index,
                       tableListData.length,
                     )}>
+                    <Text variant="body" color="white">
+                      <Text variant="body" color="white" fontWeight={'bold'}>
+                        Id:
+                      </Text>
+                      {` ${item.id}`}
+                    </Text>
                     <Text variant="body" color="white">
                       <Text variant="body" color="white" fontWeight={'bold'}>
                         Year:

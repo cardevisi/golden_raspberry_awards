@@ -1,1 +1,1 @@
-export {BASE_URL} from './config';
+export * from './config.ts';

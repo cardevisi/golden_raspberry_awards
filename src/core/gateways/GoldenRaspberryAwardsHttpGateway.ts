@@ -2,6 +2,7 @@ import {quickSortTopWinners} from '../../components/dashboard/utils';
 import {WinnerStatus} from '../../types/winner-status';
 import HttpClient from '../infra/httpClient';
 import GoldenRaspberryAwardsGateway from './GoldenRaspberryAwardsGateway';
+import {GetMovieProps} from './GoldenRaspberryAwardsGateway.types';
 
 class GoldenRaspberryAwardsHttpGateway implements GoldenRaspberryAwardsGateway {
   constructor(readonly httpClient: HttpClient, readonly baseUrl: string) {}
@@ -52,12 +53,7 @@ class GoldenRaspberryAwardsHttpGateway implements GoldenRaspberryAwardsGateway {
     size,
     year,
     winnerStatus,
-  }: {
-    page: number;
-    size: number;
-    year: number;
-    winnerStatus: WinnerStatus;
-  }): Promise<any> {
+  }: GetMovieProps): Promise<any> {
     const winnerStatusText = this.getWinnerValue(winnerStatus);
 
     const response = await fetch(
