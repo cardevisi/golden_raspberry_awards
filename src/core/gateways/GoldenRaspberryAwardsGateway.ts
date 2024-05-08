@@ -5,5 +5,5 @@ export default interface GoldenRaspberryAwardsGateway {
   getMultipleWinnersByYear(): Promise<any>;
   getStudiosWithWinCount(year: number): Promise<any>;
   getMaxMinWinIntervalForProducers(): Promise<any>;
-  getMoviesByYear(winner: boolean, year: number): Promise<any>;
+  getMoviesByYear(winner: boolean, year: string): Promise<any>;
 }

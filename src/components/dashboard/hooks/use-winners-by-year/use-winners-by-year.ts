@@ -1,17 +1,7 @@
 import {useQuery} from '@tanstack/react-query';
-import {
-  BASE_URL,
-  FetchAdapter,
-  GoldenRaspberryAwardsHttpGateway,
-} from '@golden-raspberry-awards/core';
+import {UseWinnersByYearProps} from './use-winners-by-year.types';
 
-const fetchAdapter = new FetchAdapter();
-const goldenRaspberryAwardsGateway = new GoldenRaspberryAwardsHttpGateway(
-  fetchAdapter,
-  BASE_URL,
-);
-
-const useWinnersByYear = ({year}: {year: string}) => {
+const useWinnersByYear = ({year, gateway}: UseWinnersByYearProps) => {
   const {
     data: raw,
     error,
@@ -21,11 +11,12 @@ const useWinnersByYear = ({year}: {year: string}) => {
     refetch,
   } = useQuery({
     queryKey: ['winnersByYear'],
-    queryFn: () => goldenRaspberryAwardsGateway.getMoviesByYear(true, year), //getWinnersByYear(year),
+    queryFn: () =>
+      year ? gateway.getMoviesByYear(true, year) : Promise.resolve([]),
   });
 
   return {
-    data: raw,
+    data: raw || null,
     error,
     isError,
     isLoading,

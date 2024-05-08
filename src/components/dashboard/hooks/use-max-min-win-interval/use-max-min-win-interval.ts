@@ -1,17 +1,7 @@
 import {useQuery} from '@tanstack/react-query';
-import {
-  BASE_URL,
-  GoldenRaspberryAwardsHttpGateway,
-} from '@golden-raspberry-awards/core';
-import {FetchAdapter} from '@golden-raspberry-awards/core/infra';
+import {UseMaxMinWinIntervalProps} from './use-max-min-win-interval.types';
 
-const fetchAdapter = new FetchAdapter();
-const goldenRaspberryAwardsHttpGateway = new GoldenRaspberryAwardsHttpGateway(
-  fetchAdapter,
-  BASE_URL,
-);
-
-const useMaxMinWinInterval = () => {
+const useMaxMinWinInterval = ({gateway}: UseMaxMinWinIntervalProps) => {
   const {
     data: raw,
     error,
@@ -21,8 +11,7 @@ const useMaxMinWinInterval = () => {
     refetch,
   } = useQuery({
     queryKey: ['minMaxWinners'],
-    queryFn: () =>
-      goldenRaspberryAwardsHttpGateway.getMaxMinWinIntervalForProducers(), //getMinMaxWins(),
+    queryFn: () => gateway.getMaxMinWinIntervalForProducers(),
   });
 
   return {

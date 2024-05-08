@@ -1,17 +1,10 @@
 import {useQuery} from '@tanstack/react-query';
-import {
-  BASE_URL,
-  FetchAdapter,
-  GoldenRaspberryAwardsHttpGateway,
-} from '@golden-raspberry-awards/core';
+import {UseStudiosWithWinnersProps} from './use-studios-with-winners.types';
 
-const fetchAdapter = new FetchAdapter();
-const goldenRaspberryAwardsHttpGateway = new GoldenRaspberryAwardsHttpGateway(
-  fetchAdapter,
-  BASE_URL,
-);
-
-const useStudiosWithWinners = (topWinners = 3) => {
+const useStudiosWithWinners = ({
+  topWinners = 3,
+  gateway,
+}: UseStudiosWithWinnersProps) => {
   const {
     data: raw,
     error,
@@ -21,8 +14,7 @@ const useStudiosWithWinners = (topWinners = 3) => {
     refetch,
   } = useQuery({
     queryKey: ['studiosWithWinners'],
-    queryFn: () =>
-      goldenRaspberryAwardsHttpGateway.getStudiosWithWinCount(topWinners), //getStudiosWithWinner(topWinners),
+    queryFn: () => gateway.getStudiosWithWinCount(topWinners), //getStudiosWithWinner(topWinners),
   });
 
   return {

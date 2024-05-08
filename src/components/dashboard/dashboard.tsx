@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {DashboardProps} from './dashboard.types';
-import {createText} from '@shopify/restyle';
 import {
   TableListMinMaxWinnersBase,
   TableListTopWinnersBase,
@@ -21,43 +20,60 @@ import {
 } from './hooks';
 
 import {Box} from '@golden-raspberry-awards/shared/box';
-import {SearchBar, Title} from '@golden-raspberry-awards/shared';
-import {ThemeProps} from '../../theme';
+import {SearchBar, Text, Title} from '@golden-raspberry-awards/shared';
 import styles from './dashboard.style';
+import {
+  BASE_URL,
+  FetchAdapter,
+  GoldenRaspberryAwardsHttpGateway,
+  PAGES,
+} from '@golden-raspberry-awards/core';
 
-const Text = createText<ThemeProps>();
+const fetchAdapter = new FetchAdapter();
+const goldenRaspberryAwardsGateway = new GoldenRaspberryAwardsHttpGateway(
+  fetchAdapter,
+  BASE_URL,
+);
 
 const DashboardBase = ({name}: DashboardProps) => {
-  const TOP_WINNERS = 3;
-  const DEFAULT_WINNER_YEAR = '2018';
+  const TOP_WINNERS = PAGES.DASHBOARD.topWinners;
+  const DEFAULT_WINNER_YEAR = PAGES.DASHBOARD.initiYear;
   const [selectedWinnersByYear, setSelectedWinnersByYear] =
     React.useState<string>(DEFAULT_WINNER_YEAR);
 
   const {
     data: queryResultMultiplesWinnersByYear,
     isLoading: isLoadingMultiplesWinnersByYear,
-  } = useMultipleWinnersByYears();
+  } = useMultipleWinnersByYears({
+    gateway: goldenRaspberryAwardsGateway,
+  });
 
   const {
     data: queryResultStudiosWithWinners,
     isLoading: isLoadingStudiosWithWinners,
-  } = useStudiosWithWinners(TOP_WINNERS);
+  } = useStudiosWithWinners({
+    topWinners: TOP_WINNERS,
+    gateway: goldenRaspberryAwardsGateway,
+  });
 
   const {
     dataMin: queryResultMinWins,
     dataMax: queryResultMaxWins,
     isLoading: isLoadingMinMaxWins,
-  } = useMaxMinWinInterval();
+  } = useMaxMinWinInterval({gateway: goldenRaspberryAwardsGateway});
 
   const {
     data: queryResultWinnersByYear,
     isLoading: isLoadingWinnersByYear,
     refetch: refetchWinnersByYear,
-  } = useWinnersByYear({year: selectedWinnersByYear});
+  } = useWinnersByYear({
+    year: selectedWinnersByYear,
+    gateway: goldenRaspberryAwardsGateway,
+  });
 
   useEffect(() => {
     setSelectedWinnersByYear(DEFAULT_WINNER_YEAR);
-  }, []);
+  }, [DEFAULT_WINNER_YEAR]);
 
   useEffect(() => {
     if (selectedWinnersByYear !== '') {
@@ -99,7 +115,7 @@ const DashboardBase = ({name}: DashboardProps) => {
                   onPress={(item: any) => {
                     Alert.alert(
                       item.year.toString(),
-                      `Number of winners: ${item.winnerCount.toString()}`,
+                      `Win count: ${item.winnerCount.toString()}`,
                     );
                   }}
                 />
@@ -158,6 +174,7 @@ const DashboardBase = ({name}: DashboardProps) => {
                       List movie winners by year
                     </Text>
                   </Box>
+                  {/* TODO - Implement a debounce for otimize performance of backend */}
                   <SearchBar
                     searchPhrase={selectedWinnersByYear.toString()}
                     setSearchPhrase={yearValue => {

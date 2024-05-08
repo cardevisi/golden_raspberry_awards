@@ -4,6 +4,10 @@ const PAGES = {
     initiYear: '',
     sizeOfPagination: 10,
   },
+  DASHBOARD: {
+    topWinners: 3,
+    initiYear: '',
+  },
 };
 
 export {BASE_URL, PAGES};

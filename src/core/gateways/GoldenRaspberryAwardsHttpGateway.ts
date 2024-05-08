@@ -30,7 +30,7 @@ class GoldenRaspberryAwardsHttpGateway implements GoldenRaspberryAwardsGateway {
     return await response.json();
   }
 
-  async getMoviesByYear(winner: boolean, year: number): Promise<any> {
+  async getMoviesByYear(winner: boolean, year: string): Promise<any> {
     const response = await fetch(
       `${this.baseUrl}?winner=${winner}&year=${year}`,
     );

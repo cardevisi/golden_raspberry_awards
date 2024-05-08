@@ -1,17 +1,9 @@
 import {useQuery} from '@tanstack/react-query';
-import {
-  BASE_URL,
-  GoldenRaspberryAwardsHttpGateway,
-} from '@golden-raspberry-awards/core';
-import {FetchAdapter} from '@golden-raspberry-awards/core/infra';
+import {UseMultipleWinnersByYearsProps} from './use-multiples-winners-by-years.types';
 
-const fetchAdapter = new FetchAdapter();
-const goldenRaspberryAwardsHttpGateway = new GoldenRaspberryAwardsHttpGateway(
-  fetchAdapter,
-  BASE_URL,
-);
-
-const useMultipleWinnersByYears = () => {
+const useMultipleWinnersByYears = ({
+  gateway,
+}: UseMultipleWinnersByYearsProps) => {
   const {
     data: raw,
     error,
@@ -21,7 +13,7 @@ const useMultipleWinnersByYears = () => {
     refetch,
   } = useQuery({
     queryKey: ['multiplesWinnersByYear'],
-    queryFn: () => goldenRaspberryAwardsHttpGateway.getMultipleWinnersByYear(), //getMultiplesWinnersByYear,
+    queryFn: () => gateway.getMultipleWinnersByYear(), //getMultiplesWinnersByYear,
   });
 
   return {
