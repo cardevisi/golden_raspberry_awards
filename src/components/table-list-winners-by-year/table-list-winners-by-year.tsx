@@ -40,6 +40,12 @@ const TableListWinnersByYearBase = ({
                   )}>
                   <Text variant="body" color="white">
                     <Text variant="body" color="white" fontWeight={'bold'}>
+                      Id:
+                    </Text>
+                    {` ${item.id}`}
+                  </Text>
+                  <Text variant="body" color="white">
+                    <Text variant="body" color="white" fontWeight={'bold'}>
                       Year:
                     </Text>
                     {` ${item.year}`}

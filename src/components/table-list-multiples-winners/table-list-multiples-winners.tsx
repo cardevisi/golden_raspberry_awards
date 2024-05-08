@@ -45,7 +45,7 @@ const TableListMultipleWinnersBase = ({
                   </Text>
                   <Text variant="body" color="white">
                     <Text variant="body" color="white" fontWeight={'bold'}>
-                      Number of winners:
+                      Win count:
                     </Text>
                     {` ${item.winnerCount}`}
                   </Text>

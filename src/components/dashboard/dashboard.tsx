@@ -124,10 +124,8 @@ const DashboardBase = ({name}: DashboardProps) => {
               <Box marginBottom="l" paddingHorizontal="s">
                 <Box flexDirection="column" marginBottom="s" borderRadius={5}>
                   <Text variant="subheader" color="white" fontWeight={'bold'}>
-                    Producers with longest and
-                  </Text>
-                  <Text variant="subheader" color="white" fontWeight={'bold'}>
-                    shortest intervals
+                    Producers with longest and shortest intervals between
+                    winners
                   </Text>
                 </Box>
                 <TableListMinMaxWinnersBase
@@ -165,6 +163,7 @@ const DashboardBase = ({name}: DashboardProps) => {
                     setSearchPhrase={yearValue => {
                       setSelectedWinnersByYear(yearValue);
                     }}
+                    placeholder="Search by year"
                     maxLength={4}
                     inputMode="numeric"
                   />
