@@ -61,12 +61,17 @@ const MoviesBase = ({name}: MoviesProps) => {
     if (value.toLocaleUpperCase() === WinnerStatus.NO) {
       winnerStatus = WinnerStatus.NO;
     }
-
+    resetPages();
     setSelectedWinnerStatus(winnerStatus);
   };
 
   const handleOnChangeYearTextInput = (yearValue: string) => {
+    resetPages();
     setSelectedYear(yearValue);
+  };
+
+  const resetPages = () => {
+    setCurrentPage(1);
   };
 
   return (

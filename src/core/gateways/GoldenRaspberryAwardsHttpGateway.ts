@@ -56,10 +56,6 @@ class GoldenRaspberryAwardsHttpGateway implements GoldenRaspberryAwardsGateway {
   }: GetMovieProps): Promise<any> {
     const winnerStatusText = this.getWinnerValue(winnerStatus);
 
-    console.log(
-      `${this.baseUrl}?page=${page}&size=${size}&winner=${winnerStatusText}&year=${year}`,
-    );
-
     const response = await fetch(
       `${this.baseUrl}?page=${page}&size=${size}&winner=${winnerStatusText}&year=${year}`,
     );
