@@ -2,7 +2,7 @@ const BASE_URL = 'https://tools.texoit.com/backend-java/api/movies';
 const PAGES = {
   MOVIES: {
     initiYear: '',
-    sizeOfPagination: 10,
+    sizeOfPagination: 99,
   },
   DASHBOARD: {
     topWinners: 3,

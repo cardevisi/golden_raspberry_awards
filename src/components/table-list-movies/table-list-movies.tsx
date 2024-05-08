@@ -31,6 +31,7 @@ const TableListMoviesBase = ({
             <Box width={'48%'} height={40} marginRight="s">
               {/**
                * TODO - Implement debounce for this field
+               * TODO - And a init and limit for year
                */}
               <TextInput
                 maxLength={4}
@@ -41,6 +42,10 @@ const TableListMoviesBase = ({
                 style={styles.input}
               />
             </Box>
+            {/**
+             * TODO - Change this component to a select or a mask for values yes or no
+             * TODO - Implement debounce for this field
+             */}
             <Box width={'50%'} height={40}>
               <TextInput
                 onChangeText={onChangeWinnerTextInput}
