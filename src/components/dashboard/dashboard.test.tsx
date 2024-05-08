@@ -54,7 +54,7 @@ jest.mock('./hooks/use-winners-by-year', () => {
 const mockStudiosWithWinners = [
   {
     id: 1,
-    name: 'Studio 1',
+    name: 'Studio 3',
     winCount: 5,
   },
   {
@@ -64,12 +64,12 @@ const mockStudiosWithWinners = [
   },
   {
     id: 3,
-    name: 'Studio 3',
+    name: 'Studio 4',
     winCount: 2,
   },
   {
     id: 4,
-    name: 'Studio 4',
+    name: 'Studio 1',
     winCount: 1,
   },
 ];
@@ -79,17 +79,17 @@ describe('Dashboard', () => {
     jest.clearAllMocks();
   });
 
-  it('sould render a title text', () => {
+  it('should render a title text', () => {
     render(<DashboardBase name="Dashboard Screen" />);
     expect(screen.getByText('Dashboard Screen')).toBeTruthy();
   });
 
-  it('sould render an activity indicator', () => {
+  it('should render an activity indicator', () => {
     render(<DashboardBase name="Dashboard Screen" />);
     expect(screen.getByLabelText('activity-indicator')).toBeTruthy();
   });
 
-  it('sould render a table list label for multiple winners', () => {
+  it('should render a table list label for multiple winners', () => {
     (useMultipleWinnersByYears as jest.Mock).mockReturnValue({
       isLoading: false,
       data: {
@@ -100,10 +100,10 @@ describe('Dashboard', () => {
     render(<DashboardBase name="Dashboard Screen" />);
     expect(screen.getByText('List years with multiple winners')).toBeTruthy();
     expect(screen.getByText('Year:')).toBeTruthy();
-    expect(screen.getByText('Number of winners:')).toBeTruthy();
+    expect(screen.getByText('Win count:')).toBeTruthy();
   });
 
-  it('sould render a table list label for studios with winners', () => {
+  it('should render a table list label and the top 3 studios in order', () => {
     (useStudiosWithWinners as jest.Mock).mockReturnValue({
       isLoading: false,
       data: mockStudiosWithWinners,
@@ -112,6 +112,17 @@ describe('Dashboard', () => {
     render(<DashboardBase name="Dashboard Screen" />);
     expect(screen.getByText('Top 3 studios with winners')).toBeTruthy();
     expect(screen.getAllByText('Name:').length).toBe(4);
-    expect(screen.getAllByText('Win count:').length).toBe(4);
+    expect(screen.getAllByText(/Studio/)[0].props.children[1]).toBe(
+      ' Studio 3',
+    );
+    expect(screen.getAllByText(/Studio/)[1].props.children[1]).toBe(
+      ' Studio 2',
+    );
+    expect(screen.getAllByText(/Studio/)[2].props.children[1]).toBe(
+      ' Studio 4',
+    );
+    expect(screen.getAllByText(/Studio/)[3].props.children[1]).toBe(
+      ' Studio 1',
+    );
   });
 });
