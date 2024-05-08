@@ -8,7 +8,18 @@ import {ActivityIndicator, Alert, ScrollView} from 'react-native';
 import Pagination from '@golden-raspberry-awards/shared/pagination/pagination';
 import {WinnerStatus} from '../../types/winner-status';
 import {Box} from '@golden-raspberry-awards/shared/box';
-import {PAGES} from '@golden-raspberry-awards/core';
+import {
+  BASE_URL,
+  FetchAdapter,
+  GoldenRaspberryAwardsHttpGateway,
+  PAGES,
+} from '@golden-raspberry-awards/core';
+
+const fetchAdapter = new FetchAdapter();
+const goldenRaspberryAwardsHttpGateway = new GoldenRaspberryAwardsHttpGateway(
+  fetchAdapter,
+  BASE_URL,
+);
 
 const MoviesBase = ({name}: MoviesProps) => {
   const INIT_YEAR = PAGES.MOVIES.initiYear;
@@ -29,6 +40,7 @@ const MoviesBase = ({name}: MoviesProps) => {
     winnerStatus: selectedWinnerStatus,
     page: currentPage - 1,
     size: PAGES.MOVIES.sizeOfPagination,
+    gateway: goldenRaspberryAwardsHttpGateway,
   });
 
   useEffect(() => {
