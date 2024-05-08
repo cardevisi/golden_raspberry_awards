@@ -14,7 +14,7 @@ const useStudiosWithWinners = ({
     refetch,
   } = useQuery({
     queryKey: ['studiosWithWinners'],
-    queryFn: () => gateway.getStudiosWithWinCount(topWinners), //getStudiosWithWinner(topWinners),
+    queryFn: () => gateway.getStudiosWithWinCount(topWinners),
   });
 
   return {

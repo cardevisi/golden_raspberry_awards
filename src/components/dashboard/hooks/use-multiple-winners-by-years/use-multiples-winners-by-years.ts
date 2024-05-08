@@ -13,7 +13,7 @@ const useMultipleWinnersByYears = ({
     refetch,
   } = useQuery({
     queryKey: ['multiplesWinnersByYear'],
-    queryFn: () => gateway.getMultipleWinnersByYear(), //getMultiplesWinnersByYear,
+    queryFn: () => gateway.getMultipleWinnersByYear(),
   });
 
   return {
