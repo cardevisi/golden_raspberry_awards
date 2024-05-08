@@ -28,7 +28,7 @@ const MoviesBase = ({name}: MoviesProps) => {
   const [currentPage, setCurrentPage] = React.useState<number>(CURRENT_PAGE);
   const [selectedYear, setSelectedYear] = React.useState<string>(INIT_YEAR);
   const [selectedWinnerStatus, setSelectedWinnerStatus] =
-    React.useState<WinnerStatus>(WinnerStatus.YES);
+    React.useState<WinnerStatus>(WinnerStatus.EMPTY);
 
   const {
     data: movies,
@@ -86,13 +86,15 @@ const MoviesBase = ({name}: MoviesProps) => {
         ) : (
           <>
             <Box marginBottom="m">
-              <Pagination
-                totalPages={totalPages || 1}
-                onPageChange={(value: number) => {
-                  setCurrentPage(value);
-                }}
-                currentPage={currentPage}
-              />
+              <ScrollView horizontal centerContent={true}>
+                <Pagination
+                  totalPages={totalPages || 1}
+                  onPageChange={(value: number) => {
+                    setCurrentPage(value);
+                  }}
+                  currentPage={currentPage}
+                />
+              </ScrollView>
             </Box>
             <TableListMoviesBase
               onChangeWinnerTextInput={(value: string) => {
