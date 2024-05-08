@@ -2,7 +2,7 @@ import {quickSortTopWinners} from '../../components/dashboard/utils';
 import IHttpClient from '../infra/IHttpClient';
 import IGoldenRaspberryAwardsGateway from './IGoldenRaspberryAwardsGateway';
 import {GetMovieProps} from './GoldenRaspberryAwardsGateway.types';
-import {getWinnerStatus} from './utils/getWinnerStatus';
+import {convertWinnerStatusInBoolean} from './utils/convertWinnerStatusInBoolean';
 
 class GoldenRaspberryAwardsHttpGateway
   implements IGoldenRaspberryAwardsGateway
@@ -45,7 +45,8 @@ class GoldenRaspberryAwardsHttpGateway
     year,
     winnerStatus,
   }: GetMovieProps): Promise<any> {
-    const winnerStatusAsBooleanText = getWinnerStatus(winnerStatus);
+    const winnerStatusAsBooleanText =
+      convertWinnerStatusInBoolean(winnerStatus);
     const response = await this.httpClient.get(
       `${this.baseUrl}?page=${page}&size=${size}&winner=${winnerStatusAsBooleanText}&year=${year}`,
     );

@@ -1,6 +1,6 @@
 import {WinnerStatus} from '../../../types/winner-status';
 
-export const getWinnerStatus = (winnerStatus: WinnerStatus) => {
+export const convertWinnerStatusInBoolean = (winnerStatus: WinnerStatus) => {
   if (winnerStatus === WinnerStatus.YES) {
     return 'true';
   }

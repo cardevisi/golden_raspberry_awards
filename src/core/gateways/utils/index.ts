@@ -1,1 +1,1 @@
-export {getWinnerStatus} from './getWinnerStatus';
+export {convertWinnerStatusInBoolean} from './convertWinnerStatusInBoolean';
